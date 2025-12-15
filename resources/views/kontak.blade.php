@@ -1,4 +1,9 @@
-<x-layout>
+<x-app-layout>
+    <x-slot name="title">
+        Kontak
+    </x-slot>
+  </x-app-layout>
+{{-- <x-layout>
   <x-slot:title>{{ $title }}</x-slot:title>
 <section class=" text-white py-16 px-6 md:px-12 text-center">
   <h1 class="text-4xl md:text-5xl font-extrabold tracking-wide text-amber-500">Kontak Desa</h1>
@@ -90,4 +95,4 @@
 </section>
 
 
-</x-layout>
+</x-layout> --}}

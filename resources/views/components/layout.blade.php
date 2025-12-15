@@ -39,5 +39,8 @@
     </div>
   </main>
   <x-footer>{{ $title }}</x-footer>
+
+    {{-- place to push page-specific scripts --}}
+    @stack('scripts')
 </body>
 </html>
