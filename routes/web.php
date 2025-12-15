@@ -1,23 +1,20 @@
 <?php
+
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/', function () {
-    return view('home', ['title'=>'Home Page']);
+    return view('welcome');
 });
-Route::get('/kabar', function () {
-    return view('kabar', ['title'=>'Kabar Page']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/kontak', function () {
-    return view('kontak', ['title'=>'Kontak Page']);
-});
-Route::get('/layanan', function () {
-    return view('layanan', ['title'=>'Layanan Page']);
-});
-Route::get('/pengumuman', function () {
-    return view('pengumuman', ['title'=>'Pengumuman Page']);
-});
-Route::get('/profilDesa', function () {
-    return view('profilDesa', ['title'=>'Profil Desa Page']);
-});
+
+require __DIR__.'/auth.php';
