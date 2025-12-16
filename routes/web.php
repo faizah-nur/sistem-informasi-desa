@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+Use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,3 +20,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+// admin
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin_login');
+Route::get('admin/login_submit', [AdminController::class, 'login_submit'])->name('admin_login_submit');
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin_logout');

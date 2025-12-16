@@ -16,7 +16,9 @@ class Admin extends Authenticatable
      *
      * @var list<string>
      */
-    protected $guard = 'admin';
+    // If you want to specify a custom table name, set protected $table = 'admins';
+    // protected $table = 'admins';
+
     protected $fillable = [
         'name',
         'email',
@@ -39,11 +41,12 @@ class Admin extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
