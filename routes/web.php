@@ -20,8 +20,24 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-// admin
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
-Route::get('admin/login', [AdminController::class, 'login'])->name('admin_login');
-Route::get('admin/login_submit', [AdminController::class, 'login_submit'])->name('admin_login_submit');
-Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin_logout');
+/* Admin */
+Route::middleware('admin')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+});
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('/login', [AdminController::class, 'login'])->name('admin_login');
+    Route::post('/login-submit', [AdminController::class, 'login_submit'])->name('admin_login_submit');
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin_logout');
+
+    // FORGET PASSWORD (PAKAI URL YANG SAMA)
+    Route::get('/forget-password', [AdminController::class, 'forget_password'])
+        ->name('admin_forget_password');
+
+    Route::post('/forget-password', [AdminController::class, 'forget_password_submit'])
+        ->name('admin_forget_password_submit');
+
+    Route::get('/reset-password/{token}/{email}', [AdminController::class, 'reset_password'])
+        ->name('admin_reset_password');
+});
