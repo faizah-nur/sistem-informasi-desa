@@ -29,6 +29,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'role' => ['nullable', 'string', 'in:user,admin'],
         ];
     }
 
@@ -41,9 +42,21 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $role = $this->input('role', 'user');
 
+        // attempt using admin guard when role=admin, otherwise default web guard
+        if ($role === 'admin') {
+            $guard = 'admin';
+        } else {
+            $guard = null; // default
+        }
+
+        $credentials = $this->only('email', 'password');
+
+        $attemptOk = $guard ? Auth::guard($guard)->attempt($credentials, $this->boolean('remember')) : Auth::attempt($credentials, $this->boolean('remember'));
+
+        if (! $attemptOk) {
+            RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);

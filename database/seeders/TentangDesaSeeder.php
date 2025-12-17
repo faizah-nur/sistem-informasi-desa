@@ -9,12 +9,10 @@ class TentangDesaSeeder extends Seeder
 {
     public function run(): void
     {
-        TentangDesa::truncate();
-
         TentangDesa::create([
-            'judul' => 'Tentang Desa Kami',
-            'deskripsi' => 'Desa kami merupakan desa yang terus berkembang dengan menjunjung nilai gotong royong, transparansi, dan pelayanan kepada masyarakat.',
-            'gambar' => 'tentang/tentang-desa.jpg',
+            'judul' => 'Sekilas Tentang Desa',
+            'deskripsi' => 'Desa Sukamaju adalah sebuah desa yang berkembang di wilayah Kecamatan Sukamakmur. Dengan masyarakat yang ramah, lingkungan yang asri, dan potensi pertanian yang kuat, desa ini terus berupaya meningkatkan kualitas hidup warganya melalui pembangunan berkelanjutan serta pelayanan publik yang lebih mudah diakses.',
+            'gambar' => 'about.jpeg',
         ]);
     }
 }
