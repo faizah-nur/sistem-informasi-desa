@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             // halaman kabar
             KabarSeeder::class,
             InfoSeeder::class,
+            // layanan
+            JenisSuratSeeder::class,
     ]);
     }
 }

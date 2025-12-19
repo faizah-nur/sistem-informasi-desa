@@ -36,6 +36,9 @@
             <a href="{{ route('admin.info.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
                 Info
             </a>
+            <a href="{{ route('admin.layanan-desa.pengajuan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
+                Layanan Desa
+            </a>
         </nav>
 
         <form method="POST" action="{{ route('admin_logout') }}">

@@ -31,7 +31,7 @@
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
-
+{{-- 
         <!-- Role selection (user or admin) -->
         <div class="mt-4">
             <label class="inline-flex items-center">
@@ -42,7 +42,7 @@
                 <input type="radio" name="role" value="admin" {{ old('role', request('role')) === 'admin' ? 'checked' : '' }} class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
                 <span class="ms-2 text-sm text-gray-600">Masuk sebagai Admin</span>
             </label>
-        </div>
+        </div> --}}
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))

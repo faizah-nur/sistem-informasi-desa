@@ -1,82 +1,129 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-Use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PengajuanSuratController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PengajuanSuratAdminController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+/*
+|--------------------------------------------------------------------------
+| ROOT
+|--------------------------------------------------------------------------
+*/
 Route::redirect('/', '/login');
 
-// Route::view('/kontak','kontak')->name('kontak');
-
+/*
+|--------------------------------------------------------------------------
+| AUTH DASHBOARD (USER)
+|--------------------------------------------------------------------------
+*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*
+|--------------------------------------------------------------------------
+| USER AREA
+|--------------------------------------------------------------------------
+*/
 Route::middleware('auth')->group(function () {
+
+    // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // layanan
+    Route::get('/layanan', [LayananController::class, 'index'])
+        ->name('layanan.index');
+
+    // pengajuan surat
+    Route::get('/pengajuan/{slug}', [PengajuanSuratController::class, 'create'])
+        ->name('pengajuan.create');
+
+    Route::post('/pengajuan', [PengajuanSuratController::class, 'store'])
+        ->name('pengajuan.store');
+
+    Route::get('/pengajuan', [PengajuanSuratController::class, 'riwayat'])
+        ->name('pengajuan.riwayat');
+
+    Route::get('/pengajuan/{id}/detail', [PengajuanSuratController::class, 'show'])
+        ->name('pengajuan.show');
+
+    Route::patch('/pengajuan/{id}/batalkan', [PengajuanSuratController::class, 'batalkan'])
+        ->name('pengajuan.batalkan');
 });
 
+/*
+|--------------------------------------------------------------------------
+| ADMIN AREA (WAJIB auth + admin)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
 
+    // layanan desa (pengajuan surat)
+    Route::prefix('layanan-desa')->name('layanan-desa.')->group(function () {
 
-require __DIR__.'/auth.php';
-/* Admin */
-use App\Http\Controllers\Admin\TentangDesaController;
-use App\Http\Controllers\Admin\PengumumanController;
-use App\Http\Controllers\Admin\ProgressPembangunanController;
-use App\Http\Controllers\Admin\GaleriController;
-use App\Http\Controllers\Admin\KabarController;
-use App\Http\Controllers\Admin\InfoController;
+        Route::get('/pengajuan',
+            [PengajuanSuratAdminController::class, 'index']
+        )->name('pengajuan.index');
 
-Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/pengajuan/{pengajuan}',
+            [PengajuanSuratAdminController::class, 'show']
+        )->name('pengajuan.show');
 
-    Route::get('/dashboard', fn () =>
-        view('admin.dashboard', ['title' => 'Dashboard'])
-    )->name('dashboard');
+        Route::patch('/pengajuan/{pengajuan}',
+            [PengajuanSuratAdminController::class, 'update']
+        )->name('pengajuan.update');
+    });
 
-    Route::get('/tentang-desa', [TentangDesaController::class, 'index'])
+    // MASTER DATA ADMIN
+    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class);
+    Route::resource('progress-pembangunan', App\Http\Controllers\Admin\ProgressPembangunanController::class);
+    Route::resource('galeri', App\Http\Controllers\Admin\GaleriController::class);
+    Route::resource('kabar', App\Http\Controllers\Admin\KabarController::class);
+    Route::resource('info', App\Http\Controllers\Admin\InfoController::class);
+    Route::get('/tentang-desa', [App\Http\Controllers\Admin\TentangDesaController::class, 'index'])
         ->name('tentang-desa.index');
-
-    Route::get('/tentang-desa/edit', [TentangDesaController::class, 'edit'])
+    Route::get('/tentang-desa/edit', [App\Http\Controllers\Admin\TentangDesaController::class, 'edit'])
         ->name('tentang-desa.edit');
-
-    Route::put('/tentang-desa', [TentangDesaController::class, 'update'])
+    Route::put('/tentang-desa', [App\Http\Controllers\Admin\TentangDesaController::class, 'update'])
         ->name('tentang-desa.update');
-
-    Route::resource('pengumuman', PengumumanController::class);
-    Route::resource('progress-pembangunan', ProgressPembangunanController::class);
-    Route::resource('galeri', GaleriController::class);
-    // menu kabar
-    Route::resource('kabar', KabarController::class);
-    Route::resource('info', InfoController::class);
 });
 
-
-
+/*
+|--------------------------------------------------------------------------
+| ADMIN LOGIN ALIAS (PAKAI LOGIN DEFAULT)
+|--------------------------------------------------------------------------
+*/
 Route::prefix('admin')->group(function () {
 
-    // redirect older admin login url to unified login page with role=admin
+    // arahkan ke login laravel biasa
     Route::get('/login', function () {
         return redirect()->route('login', ['role' => 'admin']);
     })->name('admin_login');
-    Route::post('/login-submit', [AdminController::class, 'login_submit'])->name('admin_login_submit');
-    Route::get('/logout', [AdminController::class, 'logout'])->name('admin_logout');
 
-    // FORGET PASSWORD (PAKAI URL YANG SAMA)
-    Route::get('/forget-password', [AdminController::class, 'forget_password'])
-        ->name('admin_forget_password');
-        
-        Route::post('/forget-password', [AdminController::class, 'forget_password_submit'])
-        ->name('admin_forget_password_submit');
-        
-        Route::get('/reset-password/{token}/{email}', [AdminController::class, 'reset_password'])
-        ->name('admin_reset_password');
+    Route::post('/login-submit',
+        [AdminController::class, 'login_submit']
+    )->name('admin_login.submit');
 
-        Route::post('/reset-password-submit', [AdminController::class, 'reset_password_submit'])
-            ->name('admin_reset_password_submit');
+    Route::post('/logout',
+        [AdminController::class, 'logout']
+    )->name('admin_logout');
 });
+
+/*
+|--------------------------------------------------------------------------
+| AUTH ROUTES (LARAVEL DEFAULT)
+|--------------------------------------------------------------------------
+*/
+require __DIR__.'/auth.php';
