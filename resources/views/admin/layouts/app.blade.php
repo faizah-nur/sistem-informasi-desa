@@ -30,6 +30,12 @@
             <a href="{{ route('admin.galeri.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
                 Galeri
             </a>
+            <a href="{{ route('admin.kabar.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
+                Kabar
+            </a>
+            <a href="{{ route('admin.info.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
+                Info
+            </a>
         </nav>
 
         <form method="POST" action="{{ route('admin_logout') }}">

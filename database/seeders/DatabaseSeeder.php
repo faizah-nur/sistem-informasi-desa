@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Info;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,6 +23,9 @@ class DatabaseSeeder extends Seeder
             PengumumanSeeder::class,
             GaleriSeeder::class,
             ProgressPembangunanSeeder::class,
+            // halaman kabar
+            KabarSeeder::class,
+            InfoSeeder::class,
     ]);
     }
 }

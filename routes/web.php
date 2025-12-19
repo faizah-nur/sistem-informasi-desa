@@ -9,7 +9,7 @@ Use App\Http\Controllers\Admin\AdminController;
 // });
 Route::redirect('/', '/login');
 
-Route::view('/kontak','kontak')->name('kontak');
+// Route::view('/kontak','kontak')->name('kontak');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -21,12 +21,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+
 require __DIR__.'/auth.php';
 /* Admin */
 use App\Http\Controllers\Admin\TentangDesaController;
 use App\Http\Controllers\Admin\PengumumanController;
 use App\Http\Controllers\Admin\ProgressPembangunanController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\KabarController;
+use App\Http\Controllers\Admin\InfoController;
 
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 
@@ -44,10 +49,11 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         ->name('tentang-desa.update');
 
     Route::resource('pengumuman', PengumumanController::class);
-
     Route::resource('progress-pembangunan', ProgressPembangunanController::class);
-
     Route::resource('galeri', GaleriController::class);
+    // menu kabar
+    Route::resource('kabar', KabarController::class);
+    Route::resource('info', InfoController::class);
 });
 
 

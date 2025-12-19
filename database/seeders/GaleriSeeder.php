@@ -58,7 +58,7 @@ class GaleriSeeder extends Seeder
             [
                 'judul' => 'Lomba Agustusan',
                 'deskripsi' => 'Antusias warga dalam memeriahkan HUT RI.',
-                'gambar' => '5.jpeg',
+                'gambar' => 'galeri/5.jpeg',
                 'kategori' => 'Kegiatan',
                 'is_active' => true,
                 'created_at' => now(),
