@@ -1,5 +1,6 @@
-<x-admin-layout title="Galeri Desa">
-
+@extends('admin.layouts.app')
+@section('title', 'Galeri Desa')
+@section('content')
 <div class="flex justify-between mb-6">
     <h1 class="text-2xl font-bold text-green-700">Galeri Desa</h1>
 
@@ -23,8 +24,7 @@
         @forelse ($data as $item)
             <tr>
                 <td class="border px-3 py-2 w-24">
-                    <img src="{{ asset('storage/' . $item->gambar) }}"
-                         class="w-24 rounded" style="width: 50px">
+                    <img src="{{ asset('storage/' . $item->gambar) }}" class="w-24 rounded" style="width: 50px">
                 </td>
                 <td class="border px-3 py-2">{{ $item->judul }}</td>
                 <td class="border px-3 py-2">{{ $item->kategori ?? '-' }}</td>
@@ -58,4 +58,4 @@
     </tbody>
 </table>
 
-</x-admin-layout>
+@endsection

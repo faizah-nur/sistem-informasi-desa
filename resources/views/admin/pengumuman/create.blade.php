@@ -1,4 +1,6 @@
-<x-admin-layout>
+@extends('admin.layouts.app')
+
+@section('content')
 <h2 class="text-2xl font-bold text-green-700 mb-6">
     Tambah Pengumuman
 </h2>
@@ -41,4 +43,4 @@
         Simpan
     </button>
 </form>
-</x-admin-layout>
+@endsection

@@ -1,4 +1,6 @@
-<x-admin-layout>
+
+@extends('admin.layouts.app' )
+@section('content')
 <h2 class="text-2xl font-bold text-green-700 mb-6">
     Edit Tentang Desa
 </h2>
@@ -34,4 +36,4 @@
         Simpan Perubahan
     </button>
 </form>
-</x-admin-layout>
+@endsection

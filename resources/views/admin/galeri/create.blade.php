@@ -1,5 +1,6 @@
-<x-admin-layout title="Tambah Galeri">
-
+@extends('admin.layouts.app')
+@section('title', 'Tambah Galeri')
+@section('content')
 <h1 class="text-2xl font-bold mb-6 text-green-700">
     Tambah Galeri
 </h1>
@@ -33,4 +34,4 @@
     </button>
 </form>
 
-</x-admin-layout>
+@endsection

@@ -1,5 +1,6 @@
-<x-admin-layout title="Edit Info">
-
+@extends('admin.layouts.app')
+@section('title', 'Edit Info')
+@section('content')
 <h1 class="text-2xl font-bold mb-6 text-green-700">Edit Info</h1>
 
 <form action="{{ route('admin.info.update', $info->id) }}"
@@ -40,5 +41,4 @@
         Update
     </button>
 </form>
-
-</x-admin-layout>
+@endsection

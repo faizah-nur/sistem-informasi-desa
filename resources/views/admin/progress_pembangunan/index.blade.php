@@ -1,5 +1,5 @@
-<x-admin-layout title="Progress Pembangunan">
-
+@extends('admin.layouts.app' )
+@section('content')
     {{-- Header --}}
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold text-green-700">Progress Pembangunan</h1>
@@ -74,7 +74,7 @@
                         {{-- Action --}}
                         <td class="px-4 py-3 text-center space-x-2">
                             <a href="{{ route('admin.progress-pembangunan.edit', $item->id) }}"
-                               class="inline-block bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                               class="inline-block  text-blue-600 hover:text-yellow-500">
                                 Edit
                             </a>
 
@@ -87,7 +87,7 @@
 
                                 <button
                                     type="submit"
-                                    class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                    class=" text-red-600 rounded hover:text-red-400">
                                     Hapus
                                 </button>
                             </form>
@@ -104,4 +104,4 @@
         </table>
     </div>
 
-</x-admin-layout>
+@endsection

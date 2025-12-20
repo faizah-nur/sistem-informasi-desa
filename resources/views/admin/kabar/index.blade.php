@@ -1,5 +1,6 @@
-<x-admin-layout title="Kabar Desa">
-
+@extends('admin.layouts.app')
+@section('content')
+@section('title', 'Kabar Desa')
 <div class="flex justify-between mb-6">
     <h1 class="text-2xl font-bold text-green-700">Kabar Desa</h1>
 
@@ -60,4 +61,4 @@
     </tbody>
 </table>
 
-</x-admin-layout>
+@endsection

@@ -11,7 +11,7 @@
 <div class="flex min-h-screen">
 
     <!-- SIDEBAR -->
-    <aside class="w-64 bg-green-700 text-white p-6 space-y-6">
+    <aside class="w-64 bg-green-700 text-white p-6 space-y-6 h-screen overflow-scroll">
         <h1 class="text-2xl font-bold">Admin Desa</h1>
 
         <nav class="space-y-3">
@@ -36,12 +36,13 @@
             <a href="{{ route('admin.info.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
                 Info
             </a>
-            <a href="{{ route('admin.layanan-desa.pengajuan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
+            <a href="{{ route('admin.layanan.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
                 Layanan Desa
             </a>
+
         </nav>
 
-        <form method="POST" action="{{ route('admin_logout') }}">
+        <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button class="w-full bg-red-600 hover:bg-red-700 py-2 rounded mt-6">
                 Logout
@@ -50,9 +51,9 @@
     </aside>
 
     <!-- CONTENT -->
-    <main class="flex-1 p-8">
-        {{ $slot }}
-    </main>
+<main class="flex-1 p-8 h-screen overflow-scroll">
+    @yield('content')
+</main>
 
 </div>
 

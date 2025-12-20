@@ -1,5 +1,7 @@
-<x-admin-layout title="Edit Progress Pembangunan">
 
+@extends('admin.layouts.app' )
+@section('title', 'Edit Progress Pembangunan')
+@section('content')
 <h1 class="text-2xl font-bold mb-6 text-green-700">
     Edit Progress Pembangunan
 </h1>
@@ -71,4 +73,4 @@
 
 </form>
 
-</x-admin-layout>
+@endsection

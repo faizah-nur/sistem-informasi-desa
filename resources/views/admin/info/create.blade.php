@@ -1,5 +1,6 @@
-<x-admin-layout title="Tambah Info">
-
+@extends('admin.layouts.app')
+@section('title', 'Tambah Info')
+@section('content')
 <h1 class="text-2xl font-bold mb-6 text-green-700">Tambah Info</h1>
 
 <form action="{{ route('admin.info.store') }}" method="POST" class="space-y-5">
@@ -36,4 +37,4 @@
     </button>
 </form>
 
-</x-admin-layout>
+@endsection
