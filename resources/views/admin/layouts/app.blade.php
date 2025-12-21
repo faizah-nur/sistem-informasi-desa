@@ -39,6 +39,9 @@
             <a href="{{ route('admin.layanan.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
                 Layanan Desa
             </a>
+            <a href="{{ route('admin.kontak.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
+                Kontak
+            </a>
 
         </nav>
 

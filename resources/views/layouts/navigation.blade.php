@@ -6,20 +6,29 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img src="/img/logounisla.png" alt="logo" class="max-w-14">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex py-3">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('kabar.index')" :active="request()->routeIs('kabar.index')">
+                        {{ __('Kabar Desa') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('pengumuman.index')" :active="request()->routeIs('pengumuman.index')">
+                        {{ __('Pengumuman Desa') }}
                     </x-nav-link>
                     <x-nav-link :href="route('layanan.index')" :active="request()->routeIs('layanan.index')">
                         {{ __('Layanan Desa') }}
                     </x-nav-link>
                     <x-nav-link :href="route('pengajuan.riwayat')" :active="request()->routeIs('pengajuan.*')">
                         {{ __('Riwayat Pengajuan') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('kontak.index')" :active="request()->routeIs('kontak.index')">
+                        {{ __('Kontak') }}
                     </x-nav-link>
                 </div>
             </div>

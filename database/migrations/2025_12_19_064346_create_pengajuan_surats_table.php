@@ -30,6 +30,7 @@ public function up(): void
         ])->default('pending');
 
         $table->text('catatan_admin')->nullable();
+        $table->string('nomor_surat')->nullable();
 
         $table->timestamps();
     });

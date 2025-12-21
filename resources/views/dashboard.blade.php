@@ -74,6 +74,35 @@
         </ul>
       </div>
     </header>
+
+{{-- <section class="min-h-screen flex items-center">
+  <div class="container mx-auto grid md:grid-cols-2 items-center gap-10">
+    
+    <!-- Text -->
+    <div>
+      <h1 class="text-4xl font-bold mb-4">
+        Petani Modern Desa
+      </h1>
+      <p class="text-gray-600">
+        Mendukung pertanian lokal dengan teknologi
+      </p>
+    </div>
+
+    <!-- Image -->
+    <div class="relative w-[350px] h-[350px] mx-auto">
+      <img
+        src="{{ asset('images/blob.png') }}"
+        class="absolute inset-0 animate-spin-slow"
+      >
+      <img
+        src="{{ asset('images/person.png') }}"
+        class="relative z-10"
+      >
+    </div>
+
+  </div>
+</section> --}}
+
   <main class="pt-10">
         <!-- about -->
       <section
@@ -86,11 +115,9 @@
             id="sekilasImg"
             class="relative w-full h-64 md:h-80 overflow-hidden rounded-2xl shadow-lg transform transition-transform duration-300"
           > 
-            <img
-              src="/img/about.jpeg"
-              alt="Desa Sukamaju"
-              class=" w-full h-full object-cover"
-            />
+            <img src="{{ $tentang && $tentang->gambar ? asset('storage/' . $tentang->gambar)
+              : asset('img/about.jpeg') }}" alt="Tentang Desa" class="w-full h-full object-cover"
+          />
             {{-- <div class="absolute inset-0 bg-black/20"></div> --}}
           </div>
 
@@ -98,24 +125,20 @@
           <div
             id="sekilasText"
           >
-            <h2 class="text-3xl md:text-4xl font-extrabold text-lime-600 mb-4">
-              Sekilas Tentang Desa
-            </h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-lime-600 mb-4">
+            {{ $tentang->judul ?? 'Sekilas Tentang Desa' }}
+        </h2>
 
-            <p class="text-gray-700 leading-relaxed mb-5">
-              Desa Sukamaju adalah sebuah desa yang berkembang di wilayah
-              Kecamatan Sukamakmur. Dengan masyarakat yang ramah, lingkungan
-              yang asri, dan potensi pertanian yang kuat, desa ini terus
-              berupaya meningkatkan kualitas hidup warganya melalui pembangunan
-              berkelanjutan serta pelayanan publik yang lebih mudah diakses.
-            </p>
+          <p class="text-gray-700 leading-relaxed mb-5">
+              {{ $tentang->deskripsi ?? '-' }}
+          </p>
 
-            <a
+            {{-- <a
               href="#"
               class="inline-block px-5 py-2 rounded-lg bg-lime-500 text-white font-medium hover:bg-lime-600 transition shadow-md"
             >
               Baca selengkapnya →
-            </a>
+            </a> --}}
           </div>
         </div>
       </section>
@@ -137,74 +160,31 @@
 
           <!-- Grid Card Pengumuman -->
           <div class="grid md:grid-cols-2 gap-6">
-            <!-- Card 1 -->
-            <div
-              class="reveal flex gap-5 bg-white/90 backdrop-blur-md shadow-lg p-5 rounded-2xl border-l-4 border-green-600 transition transform hover:scale-105 duration-300"
-            >
-              <img src="/img/jadwalPosyandu.png" alt="img" class="max-w-20" />
-              <div class="isi">
-                <h3 class="text-lg font-semibold text-green-700 mb-2">
-                  Jadwal Posyandu
-                </h3>
-                <p class="text-gray-700 text-sm leading-relaxed">
-                  Posyandu akan dilaksanakan pada
-                  <b>Rabu, 12 Desember 2025</b> di
-                  <b>Balai Dusun Sumberrejo</b> pukul <b>08.00–11.00 WIB</b>.
-                  Ibu hamil dan balita diharapkan hadir tepat waktu.
-                </p>
-              </div>
-            </div>
+    @forelse ($pengumuman as $item)
+        <div
+            class="reveal flex gap-5 bg-white/90 backdrop-blur-md shadow-lg p-5 rounded-2xl border-l-4 border-green-600 transition transform hover:scale-105 duration-300"
+        >
+            <img src="{{ asset('img/pengumuman.png') }}" alt="img" class="max-w-20" />
 
-            <!-- Card 2 -->
-            <div
-              class="reveal flex gap-5 bg-white/90 backdrop-blur-md shadow-lg p-5 rounded-2xl border-l-4 border-green-600 transition transform hover:scale-105 duration-300"
-            >
-              <img src="/img/kemerdekaan.png" alt="img" class="max-w-20" />
-              <div class="isi">
+            <div class="isi">
                 <h3 class="text-lg font-semibold text-green-700 mb-2">
-                  Lomba Agustusan
+                    {{ $item->judul }}
                 </h3>
-                <p class="text-gray-700 text-sm leading-relaxed">
-                  Memperingati Kemerdekaan RI, akan ada berbagai lomba pada
-                  <b>17 Agustus 2025</b> di Lapangan Desa. Pendaftaran dibuka
-                  sampai <b>10 Agustus</b> di kantor desa.
-                </p>
-              </div>
-            </div>
 
-            <!-- Card 3 -->
-            <div
-              class="reveal flex gap-5 bg-white/90 backdrop-blur-md shadow-lg p-5 rounded-2xl border-l-4 border-green-600 transition transform hover:scale-105 duration-300"
-            >
-              <img src="/img/airBersih.png" alt="img" class="max-w-20" />
-              <div class="isi">
-                <h3 class="text-lg font-semibold text-green-700 mb-2">
-                  Gangguan Air Bersih
-                </h3>
                 <p class="text-gray-700 text-sm leading-relaxed">
-                  Gangguan suplai air di wilayah <b>RT 04–06</b> karena
-                  perbaikan jaringan. Diperkirakan normal kembali pada
-                  <b>8 Desember 2025</b> pukul 21.00 WIB.
+                    {{ $item->ringkasan }}
                 </p>
-              </div>
-            </div>
 
-            <!-- Card 4 -->
-            <div
-              class="reveal flex gap-5 bg-white/90 backdrop-blur-md shadow-lg p-5 rounded-2xl border-l-4 border-green-600 transition transform hover:scale-105 duration-300"
-            >
-              <img src="/img/bantuanSosial.png" alt="img" class="max-w-20" />
-              <div class="isi">
-                <h3 class="text-lg font-semibold text-green-700 mb-2">
-                  Bantuan Sosial
-                </h3>
-                <p class="text-gray-700 text-sm leading-relaxed">
-                  Penyaluran BPNT Desember dilakukan pada
-                  <b>15 Desember 2025</b> di Balai Desa. Warga diminta membawa
-                  kartu identitas.
+                <p class="text-xs text-gray-500 mt-2">
+                    {{ $item->tanggal->translatedFormat('d F Y') }}
                 </p>
-              </div>
             </div>
+        </div>
+    @empty
+        <p class="text-center text-white col-span-2">
+            Belum ada pengumuman
+        </p>
+    @endforelse
           </div>
         </div>
       </section>
@@ -218,85 +198,42 @@
             Progress Pembangunan Desa
           </h2>
 
-          <!-- CARD 1 -->
-          <div
-            class="reveal flex gap-5 bg-white/90 p-6 rounded-2xl shadow-lg border-l-4 border-green-600 transition transform hover:scale-[1.03] duration-300"
-          >
-            <img src="/img/balai.png" alt="img" class="w-28" />
-            <div class="isi">
-              <h3 class="text-xl font-semibold text-green-700 mb-2">
-                Rehab Balai Desa — 80%
-              </h3>
-              <p class="text-gray-700 leading-relaxed">
-                Pekerjaan renovasi balai desa sudah mencapai 80% dan saat ini
-                memasuki tahap finishing interior serta pengecatan luar.
-                Diharapkan selesai sepenuhnya dalam minggu ketiga bulan ini.
-              </p>
-              <!-- Progress Bar -->
-              <div
-                class="w-full bg-gray-300/50 rounded-full h-3 mt-4 overflow-hidden"
-              >
+@foreach ($progress as $item)
+    <div
+        class="reveal flex gap-5 bg-white/90 p-6 rounded-2xl shadow-lg border-l-4 border-green-600 transition transform hover:scale-[1.03] duration-300"
+    >
+        <img
+            src="{{ $item->ikon ? asset('storage/' . $item->ikon) : asset('img/default-progress.png') }}"
+            alt="img"
+            class="w-28"
+        />
+
+        <div class="isi w-full">
+            <h3 class="text-xl font-semibold text-green-700 mb-2">
+                {{ $item->judul_kegiatan }}
+                —
+                {{ $item->status }}
+            </h3>
+
+            <p class="text-gray-700 leading-relaxed">
+                {{ $item->deskripsi }}
+            </p>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-300/50 rounded-full h-3 mt-4 overflow-hidden">
                 <div
-                  class="h-full bg-green-600 rounded-full"
-                  style="width: 80%"
+                    class="h-full bg-green-600 rounded-full transition-all duration-500"
+                    style="width: {{ $item->persentase_progress }}%"
                 ></div>
-              </div>
             </div>
-          </div>
 
-          <!-- CARD 2 -->
-          <div
-            class="reveal flex gap-5 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border-l-4 border-green-600 transition transform hover:scale-[1.03] duration-300"
-          >
-            <img src="/img/jalan.png" alt="img" class="w-28" />
-            <div class="isi">
-              <h3 class="text-xl font-semibold text-green-700 mb-2">
-                Pembangunan Jalan Usaha Tani — Selesai
-              </h3>
-              <p class="text-gray-700 leading-relaxed">
-                Proyek pembangunan jalan usaha tani sepanjang 1,2 km telah 100%
-                selesai. Jalan baru ini diharapkan mempermudah mobilitas petani
-                dan distribusi hasil tani ke pasar.
-              </p>
+            <p class="text-xs text-gray-500 mt-2">
+                Progress {{ $item->persentase_progress }}%
+            </p>
+        </div>
+    </div>
+@endforeach
 
-              <!-- Progress Bar -->
-              <div
-                class="w-full bg-gray-300/50 rounded-full h-3 mt-4 overflow-hidden"
-              >
-                <div
-                  class="h-full bg-green-600 rounded-full"
-                  style="width: 100%"
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CARD 3 -->
-          <div
-            class="reveal flex gap-5 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border-l-4 border-green-600 transition transform hover:scale-[1.03] duration-300"
-          >
-            <img src="/img/posyandu.png" alt="img" class="w-28" />
-            <div class="isi">
-              <h3 class="text-xl font-semibold text-green-700 mb-2">
-                Renovasi Posyandu — Dalam Proses
-              </h3>
-              <p class="text-gray-700 leading-relaxed">
-                Renovasi posyandu sedang berjalan dengan fokus pada perbaikan
-                atap, pengecatan ulang, dan penyediaan ruang tunggu yang lebih
-                nyaman. Ditargetkan selesai pada awal bulan depan.
-              </p>
-
-              <!-- Progress Bar -->
-              <div
-                class="w-full bg-gray-300/50 rounded-full h-3 mt-4 overflow-hidden"
-              >
-                <div
-                  class="h-full bg-green-600 rounded-full"
-                  style="width: 60%"
-                ></div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       <!-- Progres pembangunan end -->
@@ -368,98 +305,25 @@
         >
           Galery Kegiatan
         </h2>
-        <div class="mt-20 p-2 md:p-4 grid gap-2 grid-cols-2 md:grid-cols-4">
-          <h1
-            class="text-slate-800 text-xl md:col-start-4 md:row-start-2 md:flex md:items-center md:justify-center"
-          >
-            <span>Pemerintahan Desa</span>
-          </h1>
-          <h1
-            class="text-slate-800 text-lg font-bold md:col-start-2 md:row-start-2 md:flex md:items-end md:justify-center"
-          >
-            <span> @Desa~lamongan</span>
-          </h1>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
+<div class="mt-20 p-2 md:p-4 grid gap-2 grid-cols-2 md:grid-cols-4">
+    @forelse ($galeri as $item)
+        <div
+            class="aspect-[4/3] rounded-lg overflow-hidden group relative hover:scale-95 transition-all duration-500"
+        >
             <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/1.jpeg') }}')"
+                class="w-full h-full bg-cover bg-center absolute
+                       group-hover:scale-125 group-hover:rotate-12
+                       transition-all duration-500"
+                style="background-image: url('{{ asset('storage/' . $item->gambar) }}')"
             ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-3 overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/2.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/9.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/4.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/5.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-2 overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/6.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-4 overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/7.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/8.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-3 overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/3.jpeg') }}')"
-            ></div>
-          </div>
-          <div
-            class="bg-rose-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-3 overflow-hidden group relative hover:scale-95 transition-all duration-500"
-          >
-            <div
-              class="w-full h-full bg-cover absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-500"
-              style="background-image: url('{{ asset('img/kegiatan/10.jpeg') }}')"
-            ></div>
-          </div>
         </div>
+    @empty
+        <p class="col-span-4 text-center text-gray-500">
+            Belum ada galeri kegiatan
+        </p>
+    @endforelse
+</div>
+
         <!-- galery end -->
       </section>
     </main>

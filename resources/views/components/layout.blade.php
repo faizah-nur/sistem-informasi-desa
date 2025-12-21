@@ -38,7 +38,7 @@
       {{$slot}}
     </div>
   </main>
-  <x-footer>{{ $title }}</x-footer>
+  <x-footer :title="$title" /></x-footer>
 
     {{-- place to push page-specific scripts --}}
     @stack('scripts')
