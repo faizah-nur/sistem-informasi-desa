@@ -2,56 +2,84 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        {{-- NAMA --}}
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-        {{-- nik --}}
-        <div>
-            <x-input-label for="for" :value="__('NIK')" />
-            <x-text-input id="nik" class="block mt-1 w-full" type="text" name="nik" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('nik')" class="mt-2" />
+            <x-input-label value="Nama Lengkap" />
+            <x-text-input class="block mt-1 w-full"
+                type="text"
+                name="name"
+                required />
+            <x-input-error :messages="$errors->get('name')" />
         </div>
 
-        <!-- Email Address -->
+        {{-- NIK --}}
+<div class="mt-4">
+    <x-input-label for="nik" value="NIK" />
+    <x-text-input id="nik" class="block mt-1 w-full"
+        type="text" name="nik" required />
+</div>
+
+        {{-- EMAIL --}}
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-label value="Email" />
+            <x-text-input class="block mt-1 w-full"
+                type="email"
+                name="email"
+                required />
+            <x-input-error :messages="$errors->get('email')" />
         </div>
 
-        <!-- Password -->
+        {{-- ALAMAT --}}
+<div class="mt-4">
+    <x-input-label for="alamat" value="Alamat" />
+    <textarea name="alamat"
+        class="block mt-1 w-full border rounded"></textarea>
+</div>
+
+        {{-- UMUR --}}
+<div class="mt-4">
+    <x-input-label for="umur" value="Umur" />
+    <x-text-input id="umur" class="block mt-1 w-full"
+        type="number" name="umur" required />
+</div>
+
+        {{-- AGAMA --}}
+<div class="mt-4">
+    <x-input-label for="agama" value="Agama" />
+    <x-text-input id="agama" class="block mt-1 w-full"
+        type="text" name="agama" required />
+</div>
+
+        {{-- STATUS NIKAH --}}
+<div class="mt-4">
+    <x-input-label for="nikah" value="Status Nikah" />
+    <select name="nikah" class="block mt-1 w-full border rounded">
+        <option value="Belum Menikah">Belum Menikah</option>
+        <option value="Menikah">Menikah</option>
+    </select>
+</div>
+
+        {{-- PASSWORD --}}
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-label value="Password" />
+            <x-text-input class="block mt-1 w-full"
+                type="password"
+                name="password"
+                required />
         </div>
 
-        <!-- Confirm Password -->
+        {{-- CONFIRM --}}
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <x-input-label value="Konfirmasi Password" />
+            <x-text-input class="block mt-1 w-full"
+                type="password"
+                name="password_confirmation"
+                required />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
+        <div class="flex justify-end mt-6">
+            <x-primary-button>
+                Daftar Warga
             </x-primary-button>
         </div>
     </form>

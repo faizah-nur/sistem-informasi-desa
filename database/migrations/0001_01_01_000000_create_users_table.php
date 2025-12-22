@@ -17,6 +17,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('nik', 16)->unique();
+            $table->enum('role', ['admin', 'warga'])->default('warga');
+
+            // updateData
+            // $table->integer('nik');
+            // $table->string('alamat');
+            // $table->integer('umur');
+            // $table->string('agama');
+            // $table->string('nikah');
+            
+            
             $table->rememberToken();
             $table->timestamps();
         });

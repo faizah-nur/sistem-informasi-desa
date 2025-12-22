@@ -10,6 +10,29 @@
             @csrf
 
             <input type="hidden" name="jenis_surat_id" value="{{ $jenisSurat->id }}">
+            {{-- DATA WARGA (AUTO) --}}
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-1">Nama</label>
+    <input type="text"
+        class="w-full border rounded px-3 py-2 bg-gray-100"
+        value="{{ auth()->user()->name }}"
+        readonly>
+</div>
+
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-1">NIK</label>
+    <input type="text"
+        class="w-full border rounded px-3 py-2 bg-gray-100"
+        value="{{ auth()->user()->nik }}"
+        readonly>
+</div>
+
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-1">Alamat</label>
+    <textarea
+        class="w-full border rounded px-3 py-2 bg-gray-100"
+        readonly>{{ auth()->user()->alamat }}</textarea>
+</div>
 
             @foreach ($fields as $name => $label)
                 <div class="mb-4">

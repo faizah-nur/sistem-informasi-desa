@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
                 'name' => 'Admin Desa',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
+                'nik' => '0000000000000000', // NIK khusus admin
             ]
         );
     }

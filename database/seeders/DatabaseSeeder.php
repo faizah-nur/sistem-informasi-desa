@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             InfoSeeder::class,
             // layanan
             JenisSuratSeeder::class,
+            WargaSeeder::class,
     ]);
     }
 }
