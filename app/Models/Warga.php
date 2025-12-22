@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Warga extends Model
@@ -18,6 +19,11 @@ class Warga extends Model
         'no_hp',
         'status_pernikahan',
         'kewarganegaraan',
-        'aktif'
+        'aktif',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'nik', 'nik');
+    }
 }

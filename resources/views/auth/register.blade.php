@@ -55,7 +55,7 @@
     <x-input-label for="nikah" value="Status Nikah" />
     <select name="nikah" class="block mt-1 w-full border rounded">
         <option value="Belum Menikah">Belum Menikah</option>
-        <option value="Menikah">Menikah</option>
+        <option value="Menikah">Menikah lah</option>
     </select>
 </div>
 

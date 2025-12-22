@@ -22,12 +22,9 @@ protected $fillable = [
     'email',
     'password',
     'nik',
-    'alamat',
-    'umur',
-    'agama',
-    'nikah',
-    'role',
 ];
+
+
 
 
     /**
@@ -52,4 +49,9 @@ protected $fillable = [
             'password' => 'hashed',
         ];
     }
+    public function warga()
+{
+    return $this->belongsTo(Warga::class, 'nik', 'nik');
+}
+
 }

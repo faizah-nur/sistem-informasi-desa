@@ -27,7 +27,6 @@ use App\Http\Controllers\Admin\ProgressPembangunanController;
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard');
 
-// register warga
 Route::get('/register', [WargaRegisterController::class, 'show'])
     ->name('register');
 
@@ -116,12 +115,18 @@ Route::middleware(['auth', 'admin'])
         )->name('layanan.pdf');
 
         // kontak pesan
-        Route::get('/tentang-desa', [TentangDesaController::class, 'index'])->name('tentang-desa.index');
-        Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
-        Route::get('/progress-pembanguman', [ProgressPembangunanController::class, 'index'])->name('progress-pembangunan.index');
-        Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
-        Route::get('/kabar', [KabarController::class, 'index'])->name('kabar.index');
-        Route::get('/info', [InfoController::class, 'index'])->name('info.index');
+        Route::get('/tentang-desa', [App\Http\Controllers\Admin\TentangDesaController::class, 'index'])
+            ->name('tentang-desa.index');
+        Route::get('/tentang-desa/edit', [App\Http\Controllers\Admin\TentangDesaController::class, 'edit'])
+            ->name('tentang-desa.edit'); 
+        Route::put('/tentang-desa', [App\Http\Controllers\Admin\TentangDesaController::class, 'update'])
+            ->name('tentang-desa.update');
+        // Master Data
+        Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class);
+        Route::resource('progress-pembangunan', App\Http\Controllers\Admin\ProgressPembangunanController::class);
+        Route::resource('galeri', App\Http\Controllers\Admin\GaleriController::class);
+        Route::resource('kabar', App\Http\Controllers\Admin\KabarController::class);
+        Route::resource('info', App\Http\Controllers\Admin\InfoController::class);
         Route::get('/kontak', [KontakPesanController::class, 'index'])->name('kontak.index');
         Route::get('/kontak/{kontakPesan}', [KontakPesanController::class, 'show'])->name('kontak.show');
         Route::delete('/kontak/{kontakPesan}', [KontakPesanController::class, 'destroy'])->name('kontak.destroy');
