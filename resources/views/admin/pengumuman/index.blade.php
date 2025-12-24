@@ -19,9 +19,9 @@
     </a>
 </div>
 
-<div class="bg-white shadow rounded-lg overflow-hidden">
-    <table class="w-full">
-        <thead class="bg-gray-100">
+<div class="bg-white rounded-lg overflow-hidden">
+    <table class="w-full border-2 border-green-700">
+        <thead class="bg-gray-100 border-2 border-green-700">
             <tr>
                 <th class="p-3">Judul</th>
                 <th class="p-3">Tanggal</th>
@@ -31,7 +31,7 @@
         </thead>
         <tbody>
         @foreach ($data as $item)
-            <tr class="border-t">
+            <tr class=" border border-green-700">
                 <td class="p-3 font-semibold">{{ $item->judul }}</td>
                 <td class="p-3">{{ $item->tanggal->format('d M Y') }}</td>
                 <td class="p-3">

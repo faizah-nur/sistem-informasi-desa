@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ================== COMPONENTS ================== */
+@layer components {
+
+  .image-card {
+    @apply w-[80px] h-[130px]
+           sm:w-[90px] sm:h-[150px]
+           md:w-[150px] md:h-[250px]
+           rounded-[15px] overflow-hidden relative
+           shadow-[2px_10px_20px_rgba(0,0,0,0.3)]
+           transition duration-500
+           hover:scale-90;
+  }
+
+  .image-card img {
+    @apply w-full h-full absolute transition duration-500 hover:scale-125;
+  }
+
+  .icon-link {
+    @apply hover:text-green-500 transition transform hover:scale-110;
+  }
+
+}
+

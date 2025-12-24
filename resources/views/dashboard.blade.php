@@ -2,106 +2,106 @@
     <x-slot name="title">
         Dashboard
     </x-slot>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot> --}}
+<!-- HERO -->
+<section class="w-full min-h-screen flex flex-col justify-center items-center px-4">
 
-      <!-- HEADER PARALLAX -->
-    <header class="relative h-[99vh] overflow-hidden">
-      <!-- Layer Background -->
-      <img
-        id="bg"
-        class="layer absolute inset-0 w-full h-full object-cover object-left translate-x-3 sm:translate-x-4 md:object-center md:translate-x-0"
-        src="/img/hero.png"
-      />
+  <!-- TITLE -->
+  <h1
+    class="font-['Bebas_Neue'] font-black text-green-700 drop-shadow-lg
+           mb-3 text-center
+           text-3xl sm:text-4xl md:text-6xl
+           tracking-[2px] sm:tracking-[3px] md:tracking-[5px]">
+    PEMERINTAHAN LAMONGAN
+  </h1>
 
-      <!-- Header Text -->
-      <div
-        class="absolute inset-0 flex flex-col items-start md:max-w-[50%] justify-center text-justify px-4"
-      >
-        <h1
-          class="text-4xl md:text-7xl font-extrabold drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)]"
-        >
-          Pemerintahan Desa <span class="text-amber-300">Lamongan</span>
-        </h1>
-        <p class="mt-4 text-md md:text-2xl opacity-90">
-          Pemuda Masa Kini Pemimpin Masa Depan.
-        </p>
-        <ul class="flex gap-10 pt-5">
-          <li>
-            <a href="" class="text-sky-600"><i data-feather="map-pin"></i></a>
-          </li>
-          <li>
-            <a href="" class="text-rose-500"
-              ><i data-feather="instagram"></i
-            ></a>
-          </li>
-          <li>
-            <a href="" class="text-amber-400"><i data-feather="mail"></i></a>
-          </li>
-          <li>
-            <a href="" class="text-green-400"
-              ><i data-feather="message-square"></i
-            ></a>
-          </li>
-        </ul>
-        <button
-          class="py-3 px-10 font-medium text-white bg-amber-400 mt-4 rounded-md"
-        >
-          Layanan
-        </button>
-      </div>
+  <!-- IMAGES -->
+  <div class="flex justify-center gap-2 sm:gap-3 md:gap-4">
 
-      <!-- MENU BAWAH HEADER  -->
-      <div
-        class="w-full h-auto py-3 bg-lime-500/50 absolute bottom-0 flex justify-center items-center"
-      >
-        <ul
-          class="flex flex-wrap justify-center items-center gap-3 md:gap-6 text-sm md:text-base px-4"
-        >
-          <li>
-            <a href="#" class="block whitespace-nowrap">Pengumuman Penting</a>
-          </li>
-          <li>
-            <a href="#" class="block whitespace-nowrap">Progress Pembangunan</a>
-          </li>
-          <li>
-            <a href="#" class="block whitespace-nowrap">Layanan Online</a>
-          </li>
-          <li><a href="#" class="block whitespace-nowrap">Kegiatan Desa</a></li>
-        </ul>
-      </div>
-    </header>
-
-{{-- <section class="min-h-screen flex items-center">
-  <div class="container mx-auto grid md:grid-cols-2 items-center gap-10">
-    
-    <!-- Text -->
-    <div>
-      <h1 class="text-4xl font-bold mb-4">
-        Petani Modern Desa
-      </h1>
-      <p class="text-gray-600">
-        Mendukung pertanian lokal dengan teknologi
-      </p>
+    <!-- Hidden di mobile & tablet -->
+    <div class="hidden md:block image-card">
+      <img src="img/h1.jpeg" alt="">
     </div>
 
-    <!-- Image -->
-    <div class="relative w-[350px] h-[350px] mx-auto">
-      <img
-        src="{{ asset('images/blob.png') }}"
-        class="absolute inset-0 animate-spin-slow"
-      >
-      <img
-        src="{{ asset('images/person.png') }}"
-        class="relative z-10"
-      >
+    <!-- Hidden di mobile -->
+    <div class="hidden sm:block image-card">
+      <img src="img/h2.jpeg" alt="">
+    </div>
+
+    <!-- Always visible -->
+    <div class="image-card">
+      <img src="img/h3.jpeg" alt="">
+    </div>
+
+    <!-- Center image (no hover) -->
+    <div class="image-card shadow-none hover:scale-100">
+      <img src="img/bendera.png" class="hover:scale-100" alt="">
+    </div>
+
+    <!-- Always visible -->
+    <div class="image-card">
+      <img src="img/h4.jpeg" alt="">
+    </div>
+
+    <!-- Hidden di mobile -->
+    <div class="hidden sm:block image-card">
+      <img src="img/h5.jpeg" alt="">
+    </div>
+
+    <!-- Hidden di mobile & tablet -->
+    <div class="hidden md:block image-card">
+      <img src="img/h6.jpeg" alt="">
     </div>
 
   </div>
-</section> --}}
+
+  <!-- CONTENT -->
+  <div class="mt-3 flex flex-col items-center text-center">
+
+    <p class="text-teal-600 italic text-xs sm:text-sm md:text-base">
+      "Pemuda Masa Kini Pemimpin Masa Depan"
+    </p>
+
+    <!-- SOCIAL ICONS -->
+    <div class="flex gap-3 sm:gap-4 md:gap-5 text-green-700 mt-3 md:mt-5">
+
+      <a href="https://instagram.com/desaLamongan" target="_blank" class="icon-link">
+        <i data-feather="instagram"></i>
+      </a>
+
+      <a href="https://facebook.com/desaLamongan" target="_blank" class="icon-link">
+        <i data-feather="facebook"></i>
+      </a>
+
+      <a href="https://twitter.com/desaLamongan" target="_blank" class="icon-link">
+        <i data-feather="twitter"></i>
+      </a>
+
+      <a href="mailto:desaLamongan@gmail.com" class="icon-link">
+        <i data-feather="mail"></i>
+      </a>
+
+      <a href="https://maps.google.com/?q=Desa+Lamongan" target="_blank" class="icon-link">
+        <i data-feather="map-pin"></i>
+      </a>
+
+      <a href="https://wa.me/628123456789" target="_blank" class="icon-link">
+        <i data-feather="message-square"></i>
+      </a>
+
+    </div>
+
+    <!-- BUTTON -->
+    <a href="{{ route('layanan.index') }}"
+       class="inline-block mt-3 sm:mt-5
+              px-3 py-1.5 sm:px-4 sm:py-2
+              text-xs sm:text-sm
+              rounded-lg bg-amber-500 text-gray-200
+              hover:bg-amber-400 transition">
+      LAYANAN
+    </a>
+
+  </div>
+</section>
 
   <main class="pt-10">
         <!-- about -->
@@ -249,7 +249,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           <!-- SKCK -->
           <a
-            href="#"
+            href="{{ route('layanan.index') }}"
             class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
           >
             <div class="text-4xl mb-3 max-w-24">
@@ -262,7 +262,7 @@
 
           <!-- Domisili -->
           <a
-            href="#"
+            href="{{ route('layanan.index') }}"
             class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
           >
             <div class="text-4xl mb-3 max-w-24">
@@ -273,7 +273,7 @@
 
           <!-- SKTM -->
           <a
-            href="#"
+            href="{{ route('layanan.index') }}"
             class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
           >
             <div class="text-4xl mb-3 max-w-24">
@@ -284,7 +284,7 @@
 
           <!-- Surat Usaha -->
           <a
-            href="#"
+            href="{{ route('layanan.index') }}"
             class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
           >
             <div class="text-4xl mb-3 max-w-24">

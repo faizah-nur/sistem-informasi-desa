@@ -69,7 +69,7 @@
             </div>
             @else
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <a href="{{ route('login') }}" class="text-sm text-gray-50 underline">Login</a>
+                <a href="{{ route('login') }}" class="text-sm text-gray-50 underline"><i data-feather="log-in"></i></a>
             </div>
             @endauth
 

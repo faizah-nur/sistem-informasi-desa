@@ -10,7 +10,7 @@
     Tentang Desa
 </h2>
 
-<div class="bg-white shadow rounded-lg p-6">
+<div class="bg-white border-2 border-green-700 rounded-lg p-6">
     @if ($data)
         <h3 class="text-xl font-semibold mb-2">
             {{ $data->judul }}

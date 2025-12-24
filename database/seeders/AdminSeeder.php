@@ -14,10 +14,10 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@desa.test'],
+            ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Admin Desa',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('admin123'),
                 'role' => 'admin',
                 'nik' => '0000000000000000', // NIK khusus admin
             ]
