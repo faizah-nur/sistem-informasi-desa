@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use App\Models\PengajuanSurat;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\SuratDataMapper;
+
 
 class PengajuanSuratAdminController extends Controller
 {
@@ -49,16 +51,20 @@ public function update(Request $request, PengajuanSurat $pengajuan)
 
 
     
-    public function exportPdf(PengajuanSurat $pengajuan)
-{
-    $pdf = Pdf::loadView('admin.layanan.pdf', [
-        'pengajuan' => $pengajuan
-    ])->setPaper('A4', 'portrait');
 
-    return $pdf->download(
-        'Surat-' . $pengajuan->jenisSurat->slug . '.pdf'
-    );
+
+public function exportPdf(PengajuanSurat $pengajuan)
+{
+    $pengajuan->load(['warga','jenisSurat']);
+
+    $data = SuratDataMapper::map($pengajuan);
+
+    return Pdf::loadView('pengajuan.pdf', [
+        'pengajuan' => $pengajuan,
+        'data'      => $data,
+    ])->stream('surat-'.$pengajuan->jenisSurat->slug.'.pdf');
 }
+
 private function generateNomorSurat($slug)
 {
     $tahun = now()->year;

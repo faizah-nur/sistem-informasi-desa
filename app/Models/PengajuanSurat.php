@@ -12,11 +12,25 @@ class PengajuanSurat extends Model
         'status',
         'catatan_admin'
     ];
-
+        // relasi ke user (pengaju)
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    // relasi ke warga via user.nik
+public function warga()
+{
+    return $this->hasOneThrough(
+        Warga::class,
+        User::class,
+        'id',        // foreign key di users (users.id)
+        'nik',       // foreign key di wargas (wargas.nik)
+        'user_id',   // local key di pengajuan_surats
+        'nik'        // local key di users
+    );
+}
+
 
     public function jenisSurat()
     {

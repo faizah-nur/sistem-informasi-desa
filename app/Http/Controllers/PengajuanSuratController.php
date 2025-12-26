@@ -9,6 +9,8 @@ use App\Models\PengajuanSuratDetail;
 use App\Models\PengajuanSuratFile;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\SuratDataMapper;
+
 
 class PengajuanSuratController extends Controller
 {
@@ -147,20 +149,20 @@ class PengajuanSuratController extends Controller
         );
     }
 
+
 public function downloadPdf($id)
 {
-    $pengajuan = PengajuanSurat::with(['jenisSurat', 'details'])
-        ->where('id', $id)
-        ->where('user_id', auth()->id())
-        ->where('status', 'selesai')
-        ->firstOrFail();
+    $pengajuan = PengajuanSurat::with(['warga','jenisSurat'])
+                    ->findOrFail($id);
 
-    $pdf = Pdf::loadView('pengajuan.pdf', compact('pengajuan'));
+    $data = SuratDataMapper::map($pengajuan);
 
-    return $pdf->download(
-        'surat-' . $pengajuan->jenisSurat->slug . '.pdf'
-    );
+    return Pdf::loadView('pengajuan.pdf', [
+        'pengajuan' => $pengajuan,
+        'data'      => $data,
+    ])->download('surat-'.$pengajuan->jenisSurat->slug.'.pdf');
 }
+
 private function generateNomorSurat($jenis)
 {
     $bulanRomawi = [

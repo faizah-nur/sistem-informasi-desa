@@ -78,9 +78,13 @@ Route::middleware('auth')->group(function () {
         ->name('pengajuan.batalkan');
 
     // PDF (hanya jika selesai)
-    Route::get('/pengajuan/{id}/pdf',
-        [PengajuanSuratController::class, 'downloadPdf']
-    )->name('pengajuan.pdf');
+    // Route::get('/pengajuan/{id}/pdf',
+    //     [PengajuanSuratController::class, 'downloadPdf']
+    // )->name('pengajuan.pdf');
+Route::get('/pengajuan/{id}/pdf',
+    [PengajuanSuratController::class, 'downloadPdf']
+)->name('pengajuan.pdf');
+
 });
 
 /*
@@ -111,7 +115,7 @@ Route::middleware(['auth', 'admin'])
         )->name('layanan.update');
 
         Route::get('/layanan-surat/{pengajuan}/pdf',
-            [PengajuanSuratAdminController::class, 'exportPdf']
+        [PengajuanSuratAdminController::class, 'exportPdf']
         )->name('layanan.pdf');
 
         // kontak pesan
