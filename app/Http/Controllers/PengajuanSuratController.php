@@ -134,20 +134,23 @@ class PengajuanSuratController extends Controller
     /**
      * ✅ EXPORT PDF (USER ONLY, STATUS SELESAI)
      */
-    public function pdf($id)
-    {
-        $pengajuan = PengajuanSurat::with(['jenisSurat', 'details'])
-            ->where('id', $id)
-            ->where('user_id', auth()->id())
-            ->where('status', 'selesai')
-            ->firstOrFail();
+public function pdf($id)
+{
+    $pengajuan = PengajuanSurat::with(['jenisSurat','details','warga'])
+        ->where('id', $id)
+        ->where('user_id', auth()->id())
+        ->where('status', 'selesai')
+        ->firstOrFail();
 
-        $pdf = Pdf::loadView('pengajuan.pdf', compact('pengajuan'));
+    $data = SuratDataMapper::map($pengajuan);
 
-        return $pdf->download(
-            'surat-' . $pengajuan->jenisSurat->slug . '.pdf'
-        );
-    }
+    return Pdf::loadView('pengajuan.pdf', [
+        'pengajuan' => $pengajuan,
+        'data'      => $data
+    ])->download(
+        'surat-'.$pengajuan->jenisSurat->slug.'.pdf'
+    );
+}
 
 
 public function downloadPdf($id)

@@ -1,17 +1,37 @@
 <div class="isi">
     <p>
-        Yang bertanda tangan di bawah ini Kepala Desa Lamongan,
-        Kecamatan Lamongan, Kabupaten Lamongan, dengan ini menerangkan bahwa:
+        Yang bertanda tangan di bawah ini Kepala Desa {{ config('desa.nama_desa') }},
+        Kecamatan {{ config('desa.nama_kecamatan') }},
+        Kabupaten {{ config('desa.nama_kabupaten') }},
+        dengan ini menerangkan bahwa:
     </p>
 
     <table width="100%" cellpadding="4" cellspacing="0">
-        @foreach ($pengajuan->details as $d)
         <tr>
-            <td width="35%">{{ ucfirst(str_replace('_',' ', $d->key)) }}</td>
+            <td width="35%">Nama Lengkap</td>
             <td width="5%">:</td>
-            <td>{{ $d->value }}</td>
+            <td>{{ $data['nama_lengkap'] }}</td>
         </tr>
-        @endforeach
+        <tr>
+            <td>NIK</td>
+            <td>:</td>
+            <td>{{ $data['nik'] }}</td>
+        </tr>
+        <tr>
+            <td>Tempat / Tanggal Lahir</td>
+            <td>:</td>
+            <td>{{ $data['ttl'] }}</td>
+        </tr>
+        <tr>
+            <td>Pekerjaan</td>
+            <td>:</td>
+            <td>{{ $data['pekerjaan'] }}</td>
+        </tr>
+        <tr>
+            <td>Alamat</td>
+            <td>:</td>
+            <td>{{ $data['alamat'] }}</td>
+        </tr>
     </table>
 
     <p>

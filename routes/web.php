@@ -117,6 +117,8 @@ Route::middleware(['auth', 'admin'])
         Route::get('/layanan-surat/{pengajuan}/pdf',
         [PengajuanSuratAdminController::class, 'exportPdf']
         )->name('layanan.pdf');
+        Route::post('/pengajuan/{pengajuan}/selesai',[PengajuanSuratAdminController::class, 'selesai']
+        )->name('pengajuan.selesai');
 
         // kontak pesan
         Route::get('/tentang-desa', [App\Http\Controllers\Admin\TentangDesaController::class, 'index'])

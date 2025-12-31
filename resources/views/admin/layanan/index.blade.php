@@ -13,6 +13,7 @@
             <th class="p-3">Jenis Surat</th>
             <th class="p-3">Tanggal</th>
             <th class="p-3">Status</th>
+            <th class="p-3">Nomor Surat</th>
             <th class="p-3">Aksi</th>
         </tr>
     </thead>
@@ -31,6 +32,18 @@
                     {{ ucfirst($p->status) }}
                 </span>
             </td>
+            <td class="p-3">
+                @if($p->nomor_surat)
+                    <span class="text-green-700 font-semibold">
+                        {{ $p->nomor_surat }}
+                    </span>
+                 @else
+                    <span class="text-gray-400 italic">
+                        Belum terbit
+                    </span>
+                @endif
+            </td>
+
             <td class="p-3">
                 <a href="{{ route('admin.layanan.show', $p->id) }}"
                    class="text-blue-600 hover:underline">

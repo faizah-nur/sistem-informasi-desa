@@ -2,6 +2,7 @@
     <x-slot name="title">
         Riwayat Pengajuan
     </x-slot>
+
     <x-slot name="header" class="my-20">
         <h2 class="font-semibold text-xl text-gray-800">
             Riwayat Pengajuan Surat
@@ -21,6 +22,7 @@
         @forelse ($pengajuans as $p)
             <div class="mb-4 p-4 bg-white rounded-xl shadow">
 
+                {{-- HEADER --}}
                 <div class="flex justify-between items-center">
                     <div>
                         <h3 class="font-semibold text-gray-800">
@@ -29,8 +31,19 @@
                         <p class="text-sm text-gray-500">
                             Diajukan: {{ $p->created_at->format('d M Y') }}
                         </p>
+
+                        {{-- NOMOR SURAT (JIKA ADA) --}}
+                        @if ($p->nomor_surat)
+                            <p class="text-sm text-gray-600 mt-1">
+                                Nomor Surat:
+                                <span class="font-semibold">
+                                    {{ $p->nomor_surat }}
+                                </span>
+                            </p>
+                        @endif
                     </div>
 
+                    {{-- STATUS --}}
                     <span class="
                         px-3 py-1 rounded-full text-sm font-medium
                         @if($p->status === 'pending') bg-yellow-100 text-yellow-700
@@ -44,23 +57,28 @@
                 </div>
 
                 {{-- AKSI --}}
-                <div class="mt-3 flex gap-3 items-center">
+                <div class="mt-3 flex flex-wrap gap-3 items-center">
 
+                    {{-- DETAIL --}}
                     <a href="{{ route('pengajuan.show', $p->id) }}"
                        class="text-blue-600 text-sm hover:underline">
                         Detail
                     </a>
 
-                    {{-- PDF hanya jika selesai --}}
-                    @if ($p->status === 'selesai')
+                    {{-- PDF (HANYA JIKA SELESAI + ADA NOMOR SURAT) --}}
+                    @if ($p->status === 'selesai' && $p->nomor_surat)
                         <a href="{{ route('pengajuan.pdf', $p->id) }}"
                            class="bg-green-600 text-white px-3 py-1 rounded text-sm">
                             Download PDF
                         </a>
+                    @elseif ($p->status === 'selesai')
+                        <span class="text-sm text-gray-400 italic">
+                            Menunggu nomor surat
+                        </span>
                     @endif
 
-                    {{-- Catatan admin jika ditolak --}}
-                    @if ($p->status === 'ditolak')
+                    {{-- CATATAN ADMIN JIKA DITOLAK --}}
+                    @if ($p->status === 'ditolak' && $p->catatan_admin)
                         <span class="text-red-600 text-sm">
                             Ditolak: {{ $p->catatan_admin }}
                         </span>

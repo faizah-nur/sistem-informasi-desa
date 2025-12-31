@@ -1,3 +1,7 @@
+@php
+    $details = $pengajuan->details->pluck('value', 'key');
+@endphp
+
 <p class="text-justify">
     Yang bertanda tangan di bawah ini, Kepala Desa {{ config('desa.nama_desa') }},
     Kecamatan {{ config('desa.nama_kecamatan') }},
@@ -40,6 +44,7 @@
     </tr>
 </table>
 
+
 <p class="text-justify" style="margin-top: 10px;">
     Berdasarkan data dan pengamatan kami di lingkungan tempat tinggal yang bersangkutan,
     sampai dengan surat ini diterbitkan yang bersangkutan
@@ -49,8 +54,9 @@
 
 <p class="text-justify">
     Surat Keterangan ini dibuat untuk keperluan:
-    <strong>{{ $data['keperluan'] }}</strong>.
+    <strong>{{ $details['keperluan'] ?? '-' }}</strong>.
 </p>
+
 
 <p class="text-justify">
     Demikian Surat Keterangan ini dibuat dengan sebenar-benarnya untuk dapat dipergunakan
