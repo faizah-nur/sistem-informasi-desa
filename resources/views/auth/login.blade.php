@@ -1,25 +1,41 @@
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="mb-4 text-green-700" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}"
+          class="bg-white p-6 rounded-xl shadow-lg shadow-green-300 transition-all duration-500 hover:shadow-2xl">
         @csrf
 
-        <!-- Email Address -->
+        <!-- Email -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-label for="email" value="Email"
+                class="text-green-700 font-semibold" />
+
+            <x-text-input
+                id="email"
+                class="block mt-1 w-full border-green-300 focus:border-green-600 focus:ring-green-600"
+                type="email"
+                name="email"
+                :value="old('email')"
+                required
+                autofocus
+                autocomplete="username" />
+
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" value="Password"
+                class="text-green-700 font-semibold" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <x-text-input
+                id="password"
+                class="block mt-1 w-full border-green-300 focus:border-green-600 focus:ring-green-600"
+                type="password"
+                name="password"
+                required
+                autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -27,41 +43,37 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                <input
+                    id="remember_me"
+                    type="checkbox"
+                    class="rounded border-green-300 text-green-600 focus:ring-green-500"
+                    name="remember">
+                <span class="ms-2 text-sm text-gray-600">
+                    {{ __('Remember me') }}
+                </span>
             </label>
         </div>
-{{-- 
-        <!-- Role selection (user or admin) -->
-        <div class="mt-4">
-            <label class="inline-flex items-center">
-                <input type="radio" name="role" value="user" {{ old('role', request('role')) === 'admin' ? '' : 'checked' }} class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
-                <span class="ms-2 text-sm text-gray-600">Masuk sebagai User</span>
-            </label>
-            <label class="inline-flex items-center ms-4">
-                <input type="radio" name="role" value="admin" {{ old('role', request('role')) === 'admin' ? 'checked' : '' }} class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
-                <span class="ms-2 text-sm text-gray-600">Masuk sebagai Admin</span>
-            </label>
-        </div> --}}
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-            {{-- Register link: show only when role is not admin (default: user) --}}
-            @if (Route::has('register') && old('role', request('role')) !== 'admin')
-                <a id="register-link" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md ms-4" href="{{ route('register') }}">
-                    {{ __('Register') }}
-                </a>
-            @else
-                <a id="register-link" class="hidden underline text-sm text-gray-600 hover:text-gray-900 rounded-md ms-4" href="{{ route('register') }}">
-                    {{ __('Register') }}
-                </a>
-            @endif
+        <!-- Actions -->
+        <div class="flex items-center justify-between mt-6">
+            <div class="flex items-center gap-4">
+                @if (Route::has('password.request'))
+                    <a class="text-sm text-green-700 hover:text-green-900 transition"
+                       href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
 
-            <x-primary-button class="ms-3">
+                @if (Route::has('register') && old('role', request('role')) !== 'admin')
+                    <a class="text-sm text-green-700 hover:text-green-900 transition"
+                       href="{{ route('register') }}">
+                        {{ __('Register') }}
+                    </a>
+                @endif
+            </div>
+
+            <x-primary-button
+                class="bg-green-700 hover:bg-green-800 focus:ring-green-500 transition-all duration-300 hover:scale-105">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

@@ -131,10 +131,12 @@ class PengajuanSuratController extends Controller
             ->with('success', 'Pengajuan berhasil dibatalkan.');
     }
 
-    /**
-     * ✅ EXPORT PDF (USER ONLY, STATUS SELESAI)
-     */
-public function pdf($id)
+/**
+ * ✅ DOWNLOAD PDF (USER)
+ * - hanya pemilik pengajuan
+ * - hanya status selesai
+ */
+public function downloadPdf($id)
 {
     $pengajuan = PengajuanSurat::with(['jenisSurat','details','warga'])
         ->where('id', $id)
@@ -142,46 +144,21 @@ public function pdf($id)
         ->where('status', 'selesai')
         ->firstOrFail();
 
+    if (!$pengajuan->nomor_surat) {
+        abort(404, 'Nomor surat belum tersedia');
+    }
+
     $data = SuratDataMapper::map($pengajuan);
+
+    // amankan nama file
+    $safeNomor = str_replace(['/', '\\'], '-', $pengajuan->nomor_surat);
 
     return Pdf::loadView('pengajuan.pdf', [
         'pengajuan' => $pengajuan,
         'data'      => $data
-    ])->download(
-        'surat-'.$pengajuan->jenisSurat->slug.'.pdf'
-    );
+    ])->download("surat-{$safeNomor}.pdf");
 }
 
-
-public function downloadPdf($id)
-{
-    $pengajuan = PengajuanSurat::with(['warga','jenisSurat'])
-                    ->findOrFail($id);
-
-    $data = SuratDataMapper::map($pengajuan);
-
-    return Pdf::loadView('pengajuan.pdf', [
-        'pengajuan' => $pengajuan,
-        'data'      => $data,
-    ])->download('surat-'.$pengajuan->jenisSurat->slug.'.pdf');
-}
-
-private function generateNomorSurat($jenis)
-{
-    $bulanRomawi = [
-        1=>'I',2=>'II',3=>'III',4=>'IV',5=>'V',6=>'VI',
-        7=>'VII',8=>'VIII',9=>'IX',10=>'X',11=>'XI',12=>'XII'
-    ];
-
-    $tahun = now()->year;
-    $bulan = $bulanRomawi[now()->month];
-
-    $count = PengajuanSurat::whereYear('created_at', $tahun)
-        ->whereHas('jenisSurat', fn($q) => $q->where('slug', $jenis))
-        ->count() + 1;
-
-    return "470/$count/" . strtoupper($jenis) . "/$bulan/$tahun";
-}
 
 
 }

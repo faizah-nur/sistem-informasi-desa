@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             ProgressPembangunanSeeder::class,
             // halaman kabar
             KabarSeeder::class,
-            InfoSeeder::class,
             // layanan
             JenisSuratSeeder::class,
             WargaSeeder::class,

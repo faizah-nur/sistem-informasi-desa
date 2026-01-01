@@ -48,27 +48,29 @@ class PengajuanSuratAdminController extends Controller
      * - HANYA untuk surat yang SUDAH SELESAI
      * - TIDAK membuat nomor surat
      */
-    public function exportPdf(PengajuanSurat $pengajuan)
-    {
-        if ($pengajuan->status !== 'selesai') {
-            abort(403, 'Surat belum disahkan');
-        }
-
-        if (!$pengajuan->nomor_surat) {
-            abort(500, 'Nomor surat tidak ditemukan');
-        }
-
-        $pengajuan->load(['jenisSurat', 'details', 'warga']);
-
-        $data = SuratDataMapper::map($pengajuan);
-
-        return Pdf::loadView('pengajuan.pdf', [
-            'pengajuan' => $pengajuan,
-            'data'      => $data,
-        ])->stream(
-            'surat-' . $pengajuan->nomor_surat . '.pdf'
-        );
+public function exportPdf(PengajuanSurat $pengajuan)
+{
+    if ($pengajuan->status !== 'selesai') {
+        abort(403, 'Surat belum disahkan');
     }
+
+    if (!$pengajuan->nomor_surat) {
+        abort(500, 'Nomor surat tidak ditemukan');
+    }
+
+    $pengajuan->load(['jenisSurat', 'details', 'warga']);
+
+    $data = SuratDataMapper::map($pengajuan);
+
+    // ⚡ sanitize nomor surat supaya aman untuk filename
+    $safeNomorSurat = str_replace(['/', '\\'], '-', $pengajuan->nomor_surat);
+
+    return Pdf::loadView('pengajuan.pdf', [
+        'pengajuan' => $pengajuan,
+        'data'      => $data,
+    ])->stream('surat-' . $safeNomorSurat . '.pdf');
+}
+
 
     /**
      * ✅ FINAL & AMAN

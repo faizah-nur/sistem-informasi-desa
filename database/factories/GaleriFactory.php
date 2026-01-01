@@ -8,18 +8,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class GaleriFactory extends Factory
 {
     protected $model = Galeri::class;
-
     public function definition(): array
     {
         return [
-            'judul' => 'Kegiatan ' . $this->faker->words(2, true),
+            'judul' => $this->faker->sentence(3),
             'deskripsi' => $this->faker->sentence(10),
-            'gambar' => 'galeri/galeri-' . $this->faker->numberBetween(1, 6) . '.jpg',
+            'gambar' => 'images/dummy-galeri/' . $this->faker->numberBetween(1, 5) . '.jpg',
             'kategori' => $this->faker->randomElement([
-                'Kegiatan Desa',
-                'Pembangunan',
-                'Pelayanan',
-                'Masyarakat',
+                'Kegiatan', 'Pembangunan', 'Fasilitas Desa'
             ]),
             'is_active' => true,
         ];

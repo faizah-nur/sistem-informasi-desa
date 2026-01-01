@@ -15,6 +15,7 @@ public function up(): void
         $table->id();
         $table->string('nama');
         $table->string('slug')->unique();
+        $table->string('kode', 10)->unique(); // SKU, SKTM, SKCK, dll
         $table->text('deskripsi')->nullable();
         $table->boolean('aktif')->default(true);
         $table->timestamps();

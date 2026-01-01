@@ -6,47 +6,6 @@
     </x-slot>
 
     <!-- Hero Section Menu Kabar -->
-    <section>
-        <div class="hero md:relative md:h-screen md:px-16">
-            <h1
-                class="font-extrabold text-5xl md:text-9xl text-center text-green-700 mb-24 pt-16 tracking-widest">
-                INFO <span class="text-amber-400">WARGA</span>
-            </h1>
-
-            <img
-                class="absolute left-1/2 -translate-x-1/2 top-17 md:top-24 drop-shadow-2xl drop-shadow-green-700/25 md:max-w-md max-w-60"
-                src="/img/npc.png"
-                alt="hero"
-            />
-
-            <div class="content md:flex flex-col justify-center items-center px-5 md:mt-36 mt-52 relative z-50">
-                <ul class="flex gap-10 pt-5">
-                    <li><a href="" class="text-sky-600"><i data-feather="map-pin"></i></a></li>
-                    <li><a href="" class="text-rose-500"><i data-feather="instagram"></i></a></li>
-                    <li><a href="" class="text-amber-400"><i data-feather="mail"></i></a></li>
-                    <li><a href="" class="text-green-400"><i data-feather="message-square"></i></a></li>
-                </ul>
-
-                <h1 class="text-4xl md:text-3xl font-bold mb-4 text-gray-600 tracking-widest">
-                    <span class="text-sky-600">Kabar penting,</span>
-                    <span class="text-rose-500">kegiatan,</span>
-                    <span class="text-amber-400">dan pengumuman</span>
-                    <span class="text-green-400"> resmi desa.</span>
-                </h1>
-
-                <!-- Search -->
-                <form method="GET" class="mb-6 mt-20">
-                    <input
-                        type="text"
-                        name="search"
-                        value="{{ request('search') }}"
-                        placeholder="Cari kabar..."
-                        class="w-full rounded-xl px-4 py-2 bg-green-100 text-lime-700"
-                    />
-                </form>
-            </div>
-        </div>
-    </section>
 
     <!-- List Kabar -->
     <section class="max-w-5xl mx-auto py-10 px-4">

@@ -18,9 +18,6 @@
                     <x-nav-link :href="route('kabar.index')" :active="request()->routeIs('kabar.index')">
                         {{ __('Kabar Desa') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pengumuman.index')" :active="request()->routeIs('pengumuman.index')">
-                        {{ __('Pengumuman Desa') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('layanan.index')" :active="request()->routeIs('layanan.index')">
                         {{ __('Layanan Desa') }}
                     </x-nav-link>

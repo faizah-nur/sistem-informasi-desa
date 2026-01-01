@@ -36,11 +36,6 @@ Route::post('/register', [WargaRegisterController::class, 'store']);
 Route::get('/kabar', [KabarController::class, 'index'])->name('kabar.index');
 Route::get('/kabar/{slug}', [KabarController::class, 'show'])->name('kabar.show');
 
-Route::get('/pengumuman', [PengumumanController::class, 'index'])
-    ->name('pengumuman.index');
-Route::get('/pengumuman/{pengumuman}', [PengumumanController::class, 'show'])
-    ->name('pengumuman.show');
-
 // kontak publik
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
@@ -101,24 +96,30 @@ Route::middleware(['auth', 'admin'])
             return view('admin.dashboard');
         })->name('dashboard');
 
-        // layanan surat admin
-        Route::get('/layanan-surat',
-            [PengajuanSuratAdminController::class, 'index']
-        )->name('layanan.index');
+    // 📄 LIST PENGAJUAN
+    Route::get('/layanan-surat',
+        [PengajuanSuratAdminController::class, 'index']
+    )->name('layanan.index');
 
-        Route::get('/layanan-surat/{pengajuan}',
-            [PengajuanSuratAdminController::class, 'show']
-        )->name('layanan.show');
+    // 🔍 DETAIL
+    Route::get('/layanan-surat/{pengajuan}',
+        [PengajuanSuratAdminController::class, 'show']
+    )->name('layanan.show');
 
-        Route::patch('/layanan-surat/{pengajuan}',
-            [PengajuanSuratAdminController::class, 'update']
-        )->name('layanan.update');
+    // ✏️ UPDATE STATUS (pending / diproses / ditolak)
+    Route::patch('/layanan-surat/{pengajuan}',
+        [PengajuanSuratAdminController::class, 'update']
+    )->name('layanan.update');
 
-        Route::get('/layanan-surat/{pengajuan}/pdf',
+    // 📄 EXPORT PDF (HANYA JIKA SELESAI)
+    Route::get('/layanan-surat/{pengajuan}/pdf',
         [PengajuanSuratAdminController::class, 'exportPdf']
-        )->name('layanan.pdf');
-        Route::post('/pengajuan/{pengajuan}/selesai',[PengajuanSuratAdminController::class, 'selesai']
-        )->name('pengajuan.selesai');
+    )->name('layanan.pdf');
+
+    // ✅ SELESAIKAN + GENERATE NOMOR
+    Route::post('/layanan-surat/{pengajuan}/selesai',
+        [PengajuanSuratAdminController::class, 'selesai']
+    )->name('pengajuan.selesai');
 
         // kontak pesan
         Route::get('/tentang-desa', [App\Http\Controllers\Admin\TentangDesaController::class, 'index'])

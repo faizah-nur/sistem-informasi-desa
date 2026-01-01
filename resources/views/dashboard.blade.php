@@ -164,7 +164,7 @@
         <div
             class="reveal flex gap-5 bg-white/90 backdrop-blur-md shadow-lg p-5 rounded-2xl border-l-4 border-green-600 transition transform hover:scale-105 duration-300"
         >
-            <img src="{{ asset('img/pengumuman.png') }}" alt="img" class="max-w-20" />
+            {{-- <img src="{{ asset('img/pengumuman.png') }}" alt="img" class="max-w-20" /> --}}
 
             <div class="isi">
                 <h3 class="text-lg font-semibold text-green-700 mb-2">
@@ -298,33 +298,61 @@
       </section>
       <!-- layanan end -->
 
-      <!-- galery start -->
-      <section class="mt-40">
-        <h2
-          class="text-3xl md:text-4xl font-extrabold text-green-700 text-center mb-10"
-        >
-          Galery Kegiatan
-        </h2>
-<div class="mt-20 p-2 md:p-4 grid gap-2 grid-cols-2 md:grid-cols-4">
-    @forelse ($galeri as $item)
-        <div
-            class="aspect-[4/3] rounded-lg overflow-hidden group relative hover:scale-95 transition-all duration-500"
-        >
-            <div
-                class="w-full h-full bg-cover bg-center absolute
-                       group-hover:scale-125 group-hover:rotate-12
-                       transition-all duration-500"
-                style="background-image: url('{{ asset('storage/' . $item->gambar) }}')"
-            ></div>
-        </div>
-    @empty
-        <p class="col-span-4 text-center text-gray-500">
-            Belum ada galeri kegiatan
-        </p>
-    @endforelse
-</div>
+<!-- GALERI START -->
+<section class="mt-40">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-green-700 text-center mb-10">
+        Galeri Kegiatan Desa
+    </h2>
 
-        <!-- galery end -->
-      </section>
+    <div class="mt-10 px-4 grid gap-4 grid-cols-2 md:grid-cols-4">
+        @forelse ($galeri as $item)
+            <div
+                class="relative aspect-[4/3] rounded-xl overflow-hidden shadow-md
+                       group transition-all duration-300 hover:shadow-xl"
+            >
+                <!-- IMAGE -->
+                <div
+                    class="absolute inset-0 bg-cover bg-center
+                           transition-transform duration-500
+                           group-hover:scale-110"
+                    style="background-image: url('{{ asset('storage/' . $item->gambar) }}')"
+                ></div>
+
+                <!-- OVERLAY -->
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0
+                           group-hover:opacity-100 transition-all duration-300"
+                ></div>
+
+                <!-- TEXT -->
+                <div
+                    class="absolute bottom-0 left-0 right-0 p-3
+                           text-white translate-y-6 opacity-0
+                           group-hover:translate-y-0 group-hover:opacity-100
+                           transition-all duration-300"
+                >
+                    <p class="text-sm font-semibold">
+                        {{ $item->judul }}
+                    </p>
+                    <p class="text-xs text-gray-200">
+                        {{ $item->kategori }}
+                    </p>
+                </div>
+            </div>
+        @empty
+            <!-- EMPTY STATE -->
+            <div class="col-span-2 md:col-span-4 text-center py-16 text-gray-500">
+                <p class="text-lg font-semibold">
+                    Belum ada galeri kegiatan
+                </p>
+                <p class="text-sm mt-1">
+                    Dokumentasi kegiatan desa akan ditampilkan di sini.
+                </p>
+            </div>
+        @endforelse
+    </div>
+</section>
+<!-- GALERI END -->
+
     </main>
 </x-app-layout>

@@ -14,7 +14,8 @@
 
     <p><b>Nama:</b> {{ $pengajuan->user->name }}</p>
     <p><b>Email:</b> {{ $pengajuan->user->email }}</p>
-    <p><b>Status:</b>
+    <p>
+        <b>Status:</b>
         <span class="font-semibold capitalize">
             {{ $pengajuan->status }}
         </span>
@@ -34,7 +35,7 @@
 
     @forelse ($pengajuan->details as $d)
         <p>
-            <b>{{ Str::headline($d->key) }}:</b>
+            <b>{{ \Illuminate\Support\Str::headline($d->key) }}:</b>
             {{ $d->value }}
         </p>
     @empty
@@ -43,6 +44,7 @@
 </div>
 
 {{-- ================= UPDATE STATUS ================= --}}
+@if($pengajuan->status !== 'selesai')
 <div class="bg-white p-6 rounded shadow mb-6">
     <form method="POST"
           action="{{ route('admin.layanan.update', $pengajuan->id) }}">
@@ -72,21 +74,12 @@
                       rows="4">{{ old('catatan_admin', $pengajuan->catatan_admin) }}</textarea>
         </div>
 
-        <div class="flex gap-2">
-            <button class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">
-                Simpan Perubahan
-            </button>
-
-            @if($pengajuan->status === 'selesai')
-                <a href="{{ route('admin.layanan.pdf', $pengajuan->id) }}"
-                   class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                   target="_blank">
-                    Export PDF
-                </a>
-            @endif
-        </div>
+        <button class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">
+            Simpan Perubahan
+        </button>
     </form>
 </div>
+@endif
 
 {{-- ================= TOMBOL SELESAI ================= --}}
 @if(!$pengajuan->nomor_surat && $pengajuan->status !== 'ditolak')
@@ -99,11 +92,15 @@
             Selesaikan & Generate Nomor Surat
         </button>
     </form>
-@elseif($pengajuan->nomor_surat)
-    <div class="text-green-700 font-semibold">
-        Surat telah diterbitkan dengan nomor:
-        {{ $pengajuan->nomor_surat }}
-    </div>
+@endif
+
+{{-- ================= EXPORT PDF ================= --}}
+@if($pengajuan->status === 'selesai' && $pengajuan->nomor_surat)
+    <a href="{{ route('admin.layanan.pdf', $pengajuan->id) }}"
+       class="inline-block mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+       target="_blank">
+        Export PDF
+    </a>
 @endif
 
 @endsection

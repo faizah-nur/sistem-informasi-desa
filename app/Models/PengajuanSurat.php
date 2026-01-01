@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class PengajuanSurat extends Model
 {
+    protected $casts = [
+    'tanggal_surat' => 'datetime',
+];
+
     protected $fillable = [
         'user_id',
         'jenis_surat_id',
         'status',
+        'nomor_surat',
+        'tanggal_surat',
         'catatan_admin'
     ];
         // relasi ke user (pengaju)
