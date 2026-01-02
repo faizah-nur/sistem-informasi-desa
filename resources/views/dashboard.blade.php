@@ -202,11 +202,6 @@
     <div
         class="reveal flex gap-5 bg-white/90 p-6 rounded-2xl shadow-lg border-l-4 border-green-600 transition transform hover:scale-[1.03] duration-300"
     >
-        <img
-            src="{{ $item->ikon ? asset('storage/' . $item->ikon) : asset('img/default-progress.png') }}"
-            alt="img"
-            class="w-28"
-        />
 
         <div class="isi w-full">
             <h3 class="text-xl font-semibold text-green-700 mb-2">

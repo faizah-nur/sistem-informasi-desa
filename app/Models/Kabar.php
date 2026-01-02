@@ -18,6 +18,10 @@ class Kabar extends Model
         'tanggal_publish',
         'is_active',
     ];
+    public function komentars()
+{
+    return $this->hasMany(Komentar::class)->latest();
+}
 
     protected $casts = [
         'tanggal_publish' => 'date',

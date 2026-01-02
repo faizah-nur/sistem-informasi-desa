@@ -14,7 +14,7 @@ class KabarFactory extends Factory
         return [
             'judul' => $judul,
             'slug' => Str::slug($judul),
-            'gambar' => 'images/dummy-kabar/' . $this->faker->numberBetween(1, 3) . '.jpg',
+            'gambar' => 'img/dummy-kabar/' . $this->faker->numberBetween(1, 3) . '.jpeg',
             'isi' => $this->faker->paragraph(4),
             'kategori' => $this->faker->randomElement([
                 'Kegiatan', 'Pembangunan', 'Informasi'

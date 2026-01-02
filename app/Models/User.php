@@ -53,5 +53,9 @@ protected $fillable = [
 {
     return $this->belongsTo(Warga::class, 'nik', 'nik');
 }
+    public function komentars()
+{
+    return $this->hasMany(Komentar::class);
+}
 
 }

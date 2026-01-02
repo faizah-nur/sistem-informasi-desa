@@ -4,7 +4,7 @@ use App\Models\ProgressPembangunan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\InfoController;
+use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\User\KabarController;
 use App\Http\Controllers\User\KontakController;
 use App\Http\Controllers\Admin\GaleriController;
@@ -35,6 +35,10 @@ Route::post('/register', [WargaRegisterController::class, 'store']);
 // berita & informasi publik
 Route::get('/kabar', [KabarController::class, 'index'])->name('kabar.index');
 Route::get('/kabar/{slug}', [KabarController::class, 'show'])->name('kabar.show');
+
+Route::post('/kabar/{kabar}/komentar',[KomentarController::class, 'store']
+)->middleware('auth')->name('komentar.store');
+
 
 // kontak publik
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
@@ -133,7 +137,6 @@ Route::middleware(['auth', 'admin'])
         Route::resource('progress-pembangunan', App\Http\Controllers\Admin\ProgressPembangunanController::class);
         Route::resource('galeri', App\Http\Controllers\Admin\GaleriController::class);
         Route::resource('kabar', App\Http\Controllers\Admin\KabarController::class);
-        Route::resource('info', App\Http\Controllers\Admin\InfoController::class);
         Route::get('/kontak', [KontakPesanController::class, 'index'])->name('kontak.index');
         Route::get('/kontak/{kontakPesan}', [KontakPesanController::class, 'show'])->name('kontak.show');
         Route::delete('/kontak/{kontakPesan}', [KontakPesanController::class, 'destroy'])->name('kontak.destroy');

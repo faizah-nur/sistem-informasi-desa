@@ -88,6 +88,18 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kabar.index')" :active="request()->routeIs('kabar.index')">
+                {{ __('Kabar') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('layanan.index')" :active="request()->routeIs('layanan.index')">
+                {{ __('Layanan Desa') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pengajuan.riwayat')" :active="request()->routeIs('pengajuan.*')">
+                {{ __('Riwayat Pengajuan') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kontak.index')" :active="request()->routeIs('kontak.index')">
+                {{ __('Kontak') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
