@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kabar;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 
 class KomentarController extends Controller
@@ -20,4 +21,17 @@ class KomentarController extends Controller
 
         return back();
     }
+
+public function destroy(Komentar $komentar)
+{
+    // 🔐 Authorization manual (simple & jelas)
+    if (!auth()->user()->isAdmin()) {
+        abort(403, 'Tidak punya akses');
+    }
+
+    $komentar->delete();
+
+    return back()->with('success', 'Komentar berhasil dihapus');
+}
+
 }

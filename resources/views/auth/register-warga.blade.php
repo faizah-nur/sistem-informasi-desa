@@ -32,7 +32,7 @@
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
-
+        
         <!-- NIK -->
         <div>
             <label class="block text-sm font-medium text-green-700">
@@ -75,12 +75,21 @@
                :class="password.length >= 8 ? 'text-green-600' : 'text-red-600'">
                 Password minimal 8 karakter
             </p>
-
-            <p class="text-xs text-gray-500 mt-1">
-                Password ini digunakan untuk login ke sistem layanan desa,
-                bukan password email Anda.
-            </p>
         </div>
+        <!-- Konfirmasi Password -->
+<div>
+    <label class="block text-sm font-medium text-green-700">
+        Konfirmasi Password
+    </label>
+
+    <input type="password"
+           name="password_confirmation"
+           class="w-full mt-1 rounded-lg border-green-300
+                  focus:border-green-600 focus:ring-green-600"
+           placeholder="Ulangi password"
+           required>
+</div>
+
 
         <!-- Button -->
         <button type="submit"

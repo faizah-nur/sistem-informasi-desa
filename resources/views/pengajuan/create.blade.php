@@ -25,29 +25,30 @@
 
             <input type="hidden" name="jenis_surat_id" value="{{ $jenisSurat->id }}">
 
-            {{-- ================= DATA WARGA (READ ONLY) ================= --}}
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Nama Lengkap</label>
-                <input type="text"
-                       class="w-full border rounded px-3 py-2 bg-gray-100"
-                       value="{{ auth()->user()->name }}"
-                       readonly>
-            </div>
+{{-- ================= DATA WARGA (RESMI / READ ONLY) ================= --}}
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-1">Nama Lengkap</label>
+    <input type="text"
+           class="w-full border rounded px-3 py-2 bg-gray-100"
+           value="{{ auth()->user()->warga->nama_lengkap }}"
+           readonly>
+</div>
 
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">NIK</label>
-                <input type="text"
-                       class="w-full border rounded px-3 py-2 bg-gray-100"
-                       value="{{ auth()->user()->nik }}"
-                       readonly>
-            </div>
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-1">NIK</label>
+    <input type="text"
+           class="w-full border rounded px-3 py-2 bg-gray-100"
+           value="{{ auth()->user()->warga->nik }}"
+           readonly>
+</div>
 
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Alamat</label>
-                <textarea class="w-full border rounded px-3 py-2 bg-gray-100"
-                          rows="3"
-                          readonly>{{ auth()->user()->alamat }}</textarea>
-            </div>
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-1">Alamat</label>
+    <textarea rows="3"
+              class="w-full border rounded px-3 py-2 bg-gray-100 text-slate-700"
+              readonly>{{ auth()->user()->warga->alamat }}</textarea>
+</div>
+
 
             <hr class="my-6">
 

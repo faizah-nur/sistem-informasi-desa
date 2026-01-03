@@ -7,6 +7,10 @@
     <p class="text-amber-500 text-center">
         Gunakan menu di samping untuk mengelola konten website desa.
     </p>
+    <a href="{{ route('dashboard') }}"
+   class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition">
+    👁️ Lihat Halaman User
+</a>
     <img src="{{ asset('img/admin.png') }}" alt="img" class="max-w-96 mx-auto" />
 
 @endsection

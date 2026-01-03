@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Warga;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,32 +25,39 @@ class RegisteredUserController extends Controller
 
     /**
      * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
-$request->validate([
-    'name' => ['required', 'string', 'max:255'],
-    'nik' => ['required', 'digits:16', 'unique:users,nik'],
-    'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-    'password' => ['required', 'confirmed', Rules\Password::defaults()],
-]);
+        $request->validate([
+            'nik' => ['required', 'digits:16', 'unique:users,nik'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
+        // 🔍 Cari data warga berdasarkan NIK
+        $warga = Warga::where('nik', $request->nik)->first();
 
-$user = User::create([
-    'name' => $request->name,
-    'nik' => $request->nik, // ✅ FIX UTAMA
-    'email' => $request->email,
-    'password' => Hash::make($request->password),
-    'role' => 'warga',
-]);
+        if (!$warga) {
+            return back()->withErrors([
+                'nik' => 'NIK tidak terdaftar sebagai warga desa!!'
+            ]);
+        }
 
-
+        // ✅ Buat user dari data warga (BUKAN dari input)
+        $user = User::create([
+            'nik' => $warga->nik,
+            'name' => $warga->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'warga',
+        ]);
+        // new
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // ⬅️ WAJIB ke verification notice
+        return redirect()->route('verification.notice');
+
     }
 }

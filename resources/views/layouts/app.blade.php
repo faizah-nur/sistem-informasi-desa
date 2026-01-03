@@ -35,6 +35,37 @@
         </header>
     @endisset
 
+@if (session('success'))
+    <div
+        x-data="{ show: true }"
+        x-init="setTimeout(() => show = false, 3000)"
+        x-show="show"
+        class="fixed top-5 right-5 bg-green-600 text-white px-5 py-3 rounded-xl shadow-lg z-50"
+    >
+        {{ session('success') }}
+    </div>
+@endif
+
+
+@auth
+    @if(auth()->user()->role === 'admin')
+        {{-- ADMIN PREVIEW --}}
+    @endif
+@endauth
+
+@auth
+@if(auth()->user()->role === 'admin')
+    <div class="fixed top-16 z-50 bg-yellow-100/40 backdrop-blur-md border-b border-yellow-300 text-yellow-800 px-4 py-2 text-sm text-center">
+        ⚠️ Kamu sedang melihat halaman sebagai <strong>ADMIN (Preview User View)</strong>
+        <a href="{{ route('admin.dashboard') }}"
+           class="underline font-medium ml-2">
+            Kembali ke Dashboard Admin
+        </a>
+    </div>
+@endif
+@endauth
+
+
     {{-- Page Content --}}
     <main class="py-6">
         @isset($slot)

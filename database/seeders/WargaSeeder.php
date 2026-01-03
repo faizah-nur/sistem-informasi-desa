@@ -48,6 +48,7 @@ DB::table('wargas')->insert([
         'created_at' => now(),
         'updated_at' => now(),
     ],
+    
 ]);
 
 }

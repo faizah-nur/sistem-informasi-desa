@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\PengajuanSuratFile[] $files
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\PengajuanSuratDetail[] $details
+ * @property \App\Models\User $user
+ * @property \App\Models\Warga $warga
+ * @property \App\Models\JenisSurat $jenisSurat
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

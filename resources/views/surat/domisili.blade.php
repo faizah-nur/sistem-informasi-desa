@@ -49,7 +49,7 @@
 
 <p class="text-justify">
     Surat Keterangan Domisili ini dibuat untuk keperluan:
-    <strong>{{ $details['keperluan'] ?? '-' }}</strong>.
+    <strong>{{ $details['tujuan'] ?? '-' }}</strong>.
 </p>
 
 <p class="text-justify">

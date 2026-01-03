@@ -22,6 +22,7 @@ protected $fillable = [
     'email',
     'password',
     'nik',
+    'alamat',
 ];
 
 
@@ -49,6 +50,10 @@ protected $fillable = [
             'password' => 'hashed',
         ];
     }
+    public function isAdmin(): bool
+{
+    return $this->role === 'admin';
+}
     public function warga()
 {
     return $this->belongsTo(Warga::class, 'nik', 'nik');

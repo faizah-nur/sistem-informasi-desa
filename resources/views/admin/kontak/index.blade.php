@@ -10,9 +10,9 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="p-3 text-left">Nama</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
+                    <th class="p-3 text-left">Email</th>
+                    <th class="p-3 text-left">Status</th>
+                    <th class="p-3 text-left">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@
                     <td>
                         {{ $p->is_read ? 'Dibaca' : 'Baru' }}
                     </td>
-                    <td class="flex gap-2">
+                    <td class="flex gap-2 mt-3">
                         <a href="{{ route('admin.kontak.show', $p) }}"
                            class="text-blue-600">Detail</a>
 

@@ -14,37 +14,34 @@ use App\Services\SuratDataMapper;
 
 class PengajuanSuratController extends Controller
 {
-    public function create($slug)
-    {
-        $jenisSurat = JenisSurat::where('slug', $slug)
-            ->where('aktif', true)
-            ->firstOrFail();
+public function create($slug)
+{
+    $jenisSurat = JenisSurat::where('slug', $slug)
+        ->where('aktif', true)
+        ->firstOrFail();
 
-        $fields = match ($slug) {
-            'skck' => [
-                'nama_lengkap' => 'Nama Lengkap',
-                'nik' => 'NIK',
-                'alamat' => 'Alamat',
-            ],
-            'domisili' => [
-                'nama_lengkap' => 'Nama Lengkap',
-                'alamat' => 'Alamat',
-                'keperluan' => 'Keperluan',
-            ],
-            'sktm' => [
-                'nama_lengkap' => 'Nama Lengkap',
-                'nik' => 'NIK',
-                'pekerjaan' => 'Pekerjaan',
-            ],
-            'sku' => [
-                'nama_usaha' => 'Nama Usaha',
-                'alamat_usaha' => 'Alamat Usaha',
-            ],
-            default => [],
-        };
+    $fields = match ($slug) {
+        'skck' => [
+            'keperluan' => 'Keperluan',
+        ],
+        'domisili' => [
+            'tujuan' => 'Tujuan Pembuatan Surat',
+        ],
+        'sktm' => [
+            'pekerjaan' => 'Pekerjaan',
+        ],
+        'sku' => [
+            'nama_usaha'   => 'Nama Usaha',
+            'jenis_usaha'  => 'Jenis Usaha',
+            'alamat_usaha' => 'Alamat Usaha',
+            'lama_usaha'   => 'Lama Usaha',
+        ],
+        default => [],
+    };
 
-        return view('pengajuan.create', compact('jenisSurat', 'fields'));
-    }
+    return view('pengajuan.create', compact('jenisSurat', 'fields'));
+}
+
 
     public function store(Request $request)
     {

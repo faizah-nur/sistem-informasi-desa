@@ -14,16 +14,25 @@ class PengajuanSuratAdminController extends Controller
 {
     public function index()
     {
-        $pengajuans = PengajuanSurat::with('user', 'jenisSurat')
-            ->latest()
-            ->paginate(10);
+        $pengajuans = PengajuanSurat::with([
+            'user.warga',
+            'jenisSurat',
+            'files',
+        ])
+        ->latest()
+        ->paginate(10);
 
         return view('admin.layanan.index', compact('pengajuans'));
     }
 
     public function show(PengajuanSurat $pengajuan)
     {
-        $pengajuan->load('user', 'jenisSurat', 'details');
+        $pengajuan->load([
+            'user.warga',
+            'jenisSurat',
+            'details',
+            'files',
+        ]);
 
         return view('admin.layanan.show', compact('pengajuan'));
     }
@@ -43,46 +52,32 @@ class PengajuanSuratAdminController extends Controller
         return back()->with('success', 'Status pengajuan diperbarui');
     }
 
-    /**
-     * ✅ PDF ADMIN
-     * - HANYA untuk surat yang SUDAH SELESAI
-     * - TIDAK membuat nomor surat
-     */
-public function exportPdf(PengajuanSurat $pengajuan)
-{
-    if ($pengajuan->status !== 'selesai') {
-        abort(403, 'Surat belum disahkan');
+    public function exportPdf(PengajuanSurat $pengajuan)
+    {
+        if ($pengajuan->status !== 'selesai') {
+            abort(403, 'Surat belum disahkan');
+        }
+
+        if (!$pengajuan->nomor_surat) {
+            abort(500, 'Nomor surat tidak ditemukan');
+        }
+
+        $pengajuan->load(['jenisSurat', 'details', 'user.warga']);
+
+        $data = SuratDataMapper::map($pengajuan);
+
+        $safeNomorSurat = str_replace(['/', '\\'], '-', $pengajuan->nomor_surat);
+
+        return Pdf::loadView('pengajuan.pdf', [
+            'pengajuan' => $pengajuan,
+            'data' => $data,
+        ])->stream('surat-' . $safeNomorSurat . '.pdf');
     }
 
-    if (!$pengajuan->nomor_surat) {
-        abort(500, 'Nomor surat tidak ditemukan');
-    }
-
-    $pengajuan->load(['jenisSurat', 'details', 'warga']);
-
-    $data = SuratDataMapper::map($pengajuan);
-
-    // ⚡ sanitize nomor surat supaya aman untuk filename
-    $safeNomorSurat = str_replace(['/', '\\'], '-', $pengajuan->nomor_surat);
-
-    return Pdf::loadView('pengajuan.pdf', [
-        'pengajuan' => $pengajuan,
-        'data'      => $data,
-    ])->stream('surat-' . $safeNomorSurat . '.pdf');
-}
-
-
-    /**
-     * ✅ FINAL & AMAN
-     * - Nomor surat dibuat DI SINI
-     * - Pakai transaction
-     * - Anti race condition
-     */
     public function selesai(PengajuanSurat $pengajuan)
     {
         DB::transaction(function () use ($pengajuan) {
 
-            // 🔒 Idempotent: jangan buat ulang
             if ($pengajuan->nomor_surat) {
                 return;
             }
