@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->string('gambar');
             $table->text('isi');
             $table->string('kategori');
+            $table->boolean('is_popup')->default(false);
             $table->date('tanggal_publish');
             $table->boolean('is_active')->default(true);
             $table->timestamps();

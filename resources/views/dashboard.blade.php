@@ -3,105 +3,95 @@
         Dashboard
     </x-slot>
 <!-- HERO -->
-<section class="w-full min-h-screen flex flex-col justify-center items-center px-4">
+<section class="relative w-full min-h-screen overflow-hidden">
 
-  <!-- TITLE -->
-  <h1
-    class="font-['Bebas_Neue'] font-black text-green-700 drop-shadow-lg
-           mb-3 text-center
-           text-3xl sm:text-4xl md:text-6xl
-           tracking-[2px] sm:tracking-[3px] md:tracking-[5px]">
-    PEMERINTAHAN LAMONGAN
-  </h1>
+  <!-- 🌞 SUN GLOW (PALING BAWAH) -->
+  <div
+    class="absolute top-[-30%] left-1/2 -translate-x-1/2
+           w-[1000px] h-[1000px]
+           blur-3xl opacity-100
+           pointer-events-none
+           z-0"
+    style="
+      background: radial-gradient(
+        circle,
+        rgb(241, 179, 9) 0%,
+        rgba(255,220,120,0.7) 30%,
+        rgba(255,220,120,0.35) 50%,
+        transparent 70%
+      );
+    "
+  ></div>
 
-  <!-- IMAGES -->
-  <div class="flex justify-center gap-2 sm:gap-3 md:gap-4">
-
-    <!-- Hidden di mobile & tablet -->
-    <div class="hidden md:block image-card">
-      <img src="img/h1.jpeg" alt="">
-    </div>
-
-    <!-- Hidden di mobile -->
-    <div class="hidden sm:block image-card">
-      <img src="img/h2.jpeg" alt="">
-    </div>
-
-    <!-- Always visible -->
-    <div class="image-card">
-      <img src="img/h3.jpeg" alt="">
-    </div>
-
-    <!-- Center image (no hover) -->
-    <div class="image-card shadow-none hover:scale-100">
-      <img src="img/bendera.png" class="hover:scale-100" alt="">
-    </div>
-
-    <!-- Always visible -->
-    <div class="image-card">
-      <img src="img/h4.jpeg" alt="">
-    </div>
-
-    <!-- Hidden di mobile -->
-    <div class="hidden sm:block image-card">
-      <img src="img/h5.jpeg" alt="">
-    </div>
-
-    <!-- Hidden di mobile & tablet -->
-    <div class="hidden md:block image-card">
-      <img src="img/h6.jpeg" alt="">
-    </div>
-
+  <!-- 🌿 BACKGROUND GRADIENT -->
+  <div
+    class="absolute inset-0 z-10
+           bg-gradient-to-b
+           from-amber-100/70
+           via-emerald-100/80
+           to-emerald-200">
   </div>
 
   <!-- CONTENT -->
-  <div class="mt-3 flex flex-col items-center text-center">
+  <div class="relative z-20 min-h-screen flex flex-col justify-center items-center px-4">
 
-    <p class="text-teal-600 italic text-xs sm:text-sm md:text-base">
-      "Pemuda Masa Kini Pemimpin Masa Depan"
-    </p>
+    <h1
+      class="font-['Bebas_Neue'] font-black text-green-700 drop-shadow-xl
+             mb-3 text-center
+             text-3xl sm:text-4xl md:text-6xl
+             tracking-[2px] sm:tracking-[3px] md:tracking-[5px]">
+      PEMERINTAHAN LAMONGAN
+    </h1>
 
-    <!-- SOCIAL ICONS -->
-    <div class="flex gap-3 sm:gap-4 md:gap-5 text-green-700 mt-3 md:mt-5">
+    <!-- IMAGES -->
+    <div class="flex justify-center gap-2 sm:gap-3 md:gap-4">
 
-      <a href="https://instagram.com/desaLamongan" target="_blank" class="icon-link">
-        <i data-feather="instagram"></i>
-      </a>
+      <div class="hidden md:block image-card">
+        <img src="img/h1.jpeg" alt="">
+      </div>
 
-      <a href="https://facebook.com/desaLamongan" target="_blank" class="icon-link">
-        <i data-feather="facebook"></i>
-      </a>
+      <div class="hidden sm:block image-card">
+        <img src="img/h2.jpeg" alt="">
+      </div>
 
-      <a href="https://twitter.com/desaLamongan" target="_blank" class="icon-link">
-        <i data-feather="twitter"></i>
-      </a>
+      <div class="image-card">
+        <img src="img/h3.jpeg" alt="">
+      </div>
 
-      <a href="mailto:desaLamongan@gmail.com" class="icon-link">
-        <i data-feather="mail"></i>
-      </a>
+      <div class="image-card shadow-none hover:scale-100">
+        <img src="img/bendera.png" alt="">
+      </div>
 
-      <a href="https://maps.google.com/?q=Desa+Lamongan" target="_blank" class="icon-link">
-        <i data-feather="map-pin"></i>
-      </a>
+      <div class="image-card">
+        <img src="img/h4.jpeg" alt="">
+      </div>
 
-      <a href="https://wa.me/628123456789" target="_blank" class="icon-link">
-        <i data-feather="message-square"></i>
-      </a>
+      <div class="hidden sm:block image-card">
+        <img src="img/h5.jpeg" alt="">
+      </div>
+
+      <div class="hidden md:block image-card">
+        <img src="img/h6.jpeg" alt="">
+      </div>
 
     </div>
 
-    <!-- BUTTON -->
-    <a href="{{ route('layanan.index') }}"
-       class="inline-block mt-3 sm:mt-5
-              px-3 py-1.5 sm:px-4 sm:py-2
-              text-xs sm:text-sm
-              rounded-lg bg-amber-500 text-gray-200
-              hover:bg-amber-400 transition">
+    <p class="mt-3 text-teal-700 italic text-sm text-center">
+      "Pemuda Masa Kini Pemimpin Masa Depan"
+    </p>
+
+    <a
+      href="{{ route('layanan.index') }}"
+      class="inline-block mt-5 px-5 py-2
+             rounded-lg bg-amber-600 text-white
+             hover:bg-amber-500 transition">
       LAYANAN
     </a>
 
   </div>
 </section>
+
+
 
   <main class="pt-10">
         <!-- about -->
@@ -348,6 +338,58 @@
     </div>
 </section>
 <!-- GALERI END -->
+
+
+@if($popupKabars->isNotEmpty())
+<div
+    id="popup-kabar"
+    class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center"
+>
+    {{-- POPUP CARD --}}
+    <div
+        class="relative bg-green-400/40 max-w-md w-full rounded-2xl overflow-hidden animate-fadeIn"
+        onclick="event.stopPropagation()"
+    >
+
+        {{-- CLOSE BUTTON --}}
+        <button
+            id="closePopup"
+            class="absolute top-3 right-3 z-50 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow hover:bg-gray-100 transition"
+            aria-label="Tutup popup"
+        >
+            ✕
+        </button>
+
+        {{-- GAMBAR --}}
+        <img
+            src="{{ asset('storage/' . $popupKabars->first()->gambar) }}"
+            class="w-full h-56 object-cover"
+            alt="{{ $popupKabars->first()->judul }}"
+        >
+
+        {{-- CONTENT --}}
+        <div class="p-5 text-center">
+            <h3 class="text-lg font-bold text-white mb-2">
+                {{ $popupKabars->first()->judul }}
+            </h3>
+
+            <p class="text-sm text-white mb-4 line-clamp-3">
+                {{ Str::limit(strip_tags($popupKabars->first()->isi), 120) }}
+            </p>
+
+            <a
+                href="{{ route('kabar.show', $popupKabars->first()->slug) }}"
+                class="inline-block bg-amber-500 text-white px-5 py-2 rounded-lg hover:bg-amber-600 transition"
+            >
+                Baca Selengkapnya
+            </a>
+        </div>
+
+    </div>
+</div>
+@endif
+
+
 
     </main>
 </x-app-layout>

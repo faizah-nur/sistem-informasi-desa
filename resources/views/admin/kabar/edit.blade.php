@@ -40,6 +40,22 @@
            value="{{ $kabar->kategori }}"
            class="w-full border rounded px-3 py-2">
 
+
+    <div class="mt-4">
+    <label class="flex items-center gap-2 cursor-pointer">
+        <input
+            type="checkbox"
+            name="is_popup"
+            value="1"
+            class="rounded border-green-700 text-green-600 focus:ring-green-500"
+            {{ old('is_popup', $kabar->is_popup) ? 'checked' : '' }}
+        >
+        <span class="text-sm text-gray-700">
+            Tampilkan sebagai popup di dashboard
+        </span>
+    </label>
+</div>
+
     <input type="date" name="tanggal_publish"
            value="{{ $kabar->tanggal_publish }}"
            class="w-full border rounded px-3 py-2">

@@ -17,11 +17,18 @@ class Kabar extends Model
         'kategori',
         'tanggal_publish',
         'is_active',
+        'is_popup',
     ];
     public function komentars()
 {
     return $this->hasMany(Komentar::class)->latest();
 }
+public function scopePopup($query)
+{
+    return $query->where('is_popup', true)
+                 ->where('is_active', true);
+}
+
 
     protected $casts = [
         'tanggal_publish' => 'date',

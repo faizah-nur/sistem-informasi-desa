@@ -26,6 +26,21 @@
            class="w-full border rounded px-3 py-2"
            placeholder="Kategori">
 
+       <div class="mt-4">
+    <label class="flex items-center gap-2 cursor-pointer">
+        <input
+            type="checkbox"
+            name="is_popup"
+            value="1"
+            class="rounded border-green-700 text-green-600 focus:ring-green-500"
+        >
+        <span class="text-sm text-gray-700">
+            Tampilkan sebagai popup di dashboard
+        </span>
+    </label>
+</div>
+
+
     <input type="date" name="tanggal_publish"
            class="w-full border rounded px-3 py-2" required>
 

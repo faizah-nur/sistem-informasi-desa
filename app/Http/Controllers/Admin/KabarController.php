@@ -20,26 +20,32 @@ class KabarController extends Controller
         return view('admin.kabar.create');
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'judul' => 'required|max:255',
-            'gambar' => 'required|image|max:2048',
-            'isi' => 'required',
-            'kategori' => 'required|max:100',
-            'tanggal_publish' => 'required|date',
-        ]);
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'judul' => 'required|max:255',
+        'gambar' => 'required|image|max:2048',
+        'isi' => 'required',
+        'kategori' => 'required|max:100',
+        'tanggal_publish' => 'required|date',
+        'is_popup' => 'nullable|boolean',
+    ]);
 
-        $validated['slug'] = Str::slug($request->judul);
-        $validated['gambar'] = $request->file('gambar')->store('kabar', 'public');
-        $validated['is_active'] = $request->has('is_active');
+    // checkbox handling (WAJIB)
+    $validated['is_popup'] = $request->boolean('is_popup');
+    $validated['is_active'] = $request->has('is_active');
 
-        Kabar::create($validated);
+    // slug & gambar
+    $validated['slug'] = Str::slug($request->judul);
+    $validated['gambar'] = $request->file('gambar')->store('kabar', 'public');
 
-        return redirect()
-            ->route('admin.kabar.index')
-            ->with('success', 'Kabar berhasil ditambahkan');
-    }
+    Kabar::create($validated);
+
+    return redirect()
+        ->route('admin.kabar.index')
+        ->with('success', 'Kabar berhasil ditambahkan');
+}
+
 
     public function edit(Kabar $kabar)
     {
@@ -54,8 +60,10 @@ class KabarController extends Controller
             'isi' => 'required',
             'kategori' => 'required|max:100',
             'tanggal_publish' => 'required|date',
+            'is_popup' => 'nullable|boolean',
         ]);
-
+        // pastikan checkbox selalu punya nilai
+        $validated['is_popup'] = $request->boolean('is_popup');
         $validated['slug'] = Str::slug($request->judul);
         $validated['is_active'] = $request->has('is_active');
 

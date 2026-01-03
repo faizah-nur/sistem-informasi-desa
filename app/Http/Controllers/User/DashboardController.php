@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\TentangDesa;
-use App\Models\Pengumuman;
-use App\Models\ProgressPembangunan;
+use App\Models\Kabar;
 use App\Models\Galeri;
+use App\Models\Pengumuman;
+use App\Models\TentangDesa;
+use App\Models\ProgressPembangunan;
 
 class DashboardController extends Controller
 {
@@ -28,11 +29,19 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
+        // 🔥 KABAR POPUP (HANYA YANG AKTIF)
+        $popupKabars = Kabar::popup()
+            ->where('is_active', true)
+            ->orderBy('tanggal_publish', 'desc')
+            ->take(1) // ubah ke 3 jika mau banyak
+            ->get();
+
         return view('dashboard', compact(
             'tentang',
             'pengumuman',
             'progress',
-            'galeri'
+            'galeri',
+            'popupKabars'
         ));
     }
 }
