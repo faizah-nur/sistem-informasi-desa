@@ -18,7 +18,7 @@ window.addEventListener("load", function () {
         localStorage.setItem("popupSeen", "true");
     });
 
-    if (localStorage.getItem("popupSeen")) {
-        popup.classList.add("hidden");
-    }
+    // if (localStorage.getItem("popupSeen")) {
+    //     popup.classList.add("hidden");
+    // }
 });

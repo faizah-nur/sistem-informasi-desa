@@ -10,7 +10,7 @@ class ProgressPembangunanSeeder extends Seeder
     public function run(): void
     {
         if (app()->environment(['local', 'testing'])) {
-            ProgressPembangunan::factory(3)->create();
+            ProgressPembangunan::factory(1)->create();
         }
     }
 }

@@ -39,12 +39,17 @@
             <a href="{{ route('admin.kontak.index') }}" class="block hover:bg-green-800 px-3 py-2 rounded">
                 Kontak
             </a>
-
         </nav>
 
+        <form method="GET" action="{{ route('dashboard') }}">
+            @csrf
+            <button class="w-full bg-amber-500 hover:bg-amber-600 py-2 rounded mt-3">
+                Lihat Halaman User
+            </button>
+        </form>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button class="w-full bg-red-600 hover:bg-red-700 py-2 rounded mt-6">
+            <button class="w-full bg-red-600 hover:bg-red-700 py-2 rounded mt-2">
                 Logout
             </button>
         </form>

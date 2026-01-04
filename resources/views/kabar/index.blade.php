@@ -9,10 +9,8 @@
 
     <!-- List Kabar -->
     <section class="max-w-5xl mx-auto py-10 px-4">
-        <h2 class="text-3xl font-semibold mb-6">Kabar Desa</h2>
-
         <!-- Filter Kategori -->
-        <div class="flex gap-2 flex-wrap mb-8">
+        <div class="flex gap-2 flex-wrap mb-8 mt-24">
             <a href="{{ route('kabar.index') }}"
                class="px-4 py-2 rounded-full {{ request('kategori') ? 'bg-green-300' : 'bg-green-700 text-white' }}">
                 Semua

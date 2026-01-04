@@ -105,17 +105,17 @@
 
     <a
       href="{{ route('layanan.index') }}"
-      class="inline-block mt-5 px-5 py-2
+      class="inline-block mt-3 px-5 py-1
              rounded-lg bg-amber-600 text-white
              hover:bg-amber-500 transition">
       LAYANAN
     </a>
 
   </div>
-  <div class="hero absolute z-40 bottom-0 overflow-hidden bg-green-700 border-green-700 text-white py-0">
+  <div class="hero absolute w-full z-40 bottom-0 overflow-hidden bg-green-700 border-green-700 text-white py-3">
       <div class="flex items-center gap-4">
   
-          <img class="max-w-14" src="img/logounisla.png" alt="img">
+          {{-- <img class="max-w-16" src="img/logounisla.png" alt="img"> --}}
   
           <div class="overflow-hidden w-full">
               <div class="ticker flex gap-12 whitespace-nowrap">

@@ -10,7 +10,7 @@ class GaleriSeeder extends Seeder
     public function run(): void
     {
         if (app()->environment(['local', 'testing'])) {
-            Galeri::factory(10)->create();
+            Galeri::factory(1)->create();
         }
     }
 }
