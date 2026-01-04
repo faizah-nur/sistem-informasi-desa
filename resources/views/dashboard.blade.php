@@ -5,7 +5,6 @@
 <!-- HERO -->
 <section class="relative w-full min-h-screen overflow-hidden">
 
-  <!-- 🌞 SUN GLOW (PALING BAWAH) -->
   <div
     class="absolute top-[-30%] left-1/2 -translate-x-1/2
            w-[1000px] h-[1000px]
@@ -15,7 +14,7 @@
     style="
       background: radial-gradient(
         circle,
-        rgb(241, 179, 9) 0%,
+        rgb(241, 98, 9) 10%,
         rgba(255,220,120,0.7) 30%,
         rgba(255,220,120,0.35) 50%,
         transparent 70%
@@ -23,7 +22,6 @@
     "
   ></div>
 
-  <!-- 🌿 BACKGROUND GRADIENT -->
   <div
     class="absolute inset-0 z-10
            bg-gradient-to-b
@@ -76,9 +74,34 @@
 
     </div>
 
-    <p class="mt-3 text-teal-700 italic text-sm text-center">
-      "Pemuda Masa Kini Pemimpin Masa Depan"
-    </p>
+        <!-- SOCIAL ICONS -->
+    <div class="flex gap-3 sm:gap-4 md:gap-5 text-green-700 mt-3 md:mt-5">
+
+      <a href="https://instagram.com/desaLamongan" target="_blank" class="icon-link">
+        <i data-feather="instagram"></i>
+      </a>
+
+      <a href="https://facebook.com/desaLamongan" target="_blank" class="icon-link">
+        <i data-feather="facebook"></i>
+      </a>
+
+      <a href="https://twitter.com/desaLamongan" target="_blank" class="icon-link">
+        <i data-feather="twitter"></i>
+      </a>
+
+      <a href="mailto:desaLamongan@gmail.com" class="icon-link">
+        <i data-feather="mail"></i>
+      </a>
+
+      <a href="https://maps.google.com/?q=Desa+Lamongan" target="_blank" class="icon-link">
+        <i data-feather="map-pin"></i>
+      </a>
+
+      <a href="https://wa.me/628123456789" target="_blank" class="icon-link">
+        <i data-feather="message-square"></i>
+      </a>
+
+    </div>
 
     <a
       href="{{ route('layanan.index') }}"
@@ -89,7 +112,25 @@
     </a>
 
   </div>
+  <div class="hero absolute z-40 bottom-0 overflow-hidden bg-green-700 border-green-700 text-white py-0">
+      <div class="flex items-center gap-4">
+  
+          <img class="max-w-14" src="img/logounisla.png" alt="img">
+  
+          <div class="overflow-hidden w-full">
+              <div class="ticker flex gap-12 whitespace-nowrap">
+                  @foreach ($kabar as $item)
+                      <span class="font-semibold">
+                          {{ $item->judul }}
+                      </span>
+                  @endforeach
+              </div>
+          </div>
+  
+      </div>
+  </div>
 </section>
+
 
 
 

@@ -67,7 +67,7 @@
 
 
     {{-- Page Content --}}
-    <main class="py-6">
+    <main class="py-0">
         @isset($slot)
             {{ $slot }}
         @else

@@ -29,19 +29,21 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
-        // 🔥 KABAR POPUP (HANYA YANG AKTIF)
         $popupKabars = Kabar::popup()
             ->where('is_active', true)
             ->orderBy('tanggal_publish', 'desc')
             ->take(1) // ubah ke 3 jika mau banyak
             ->get();
 
+        $kabar = Kabar::latest()->take(10)->get();
+
         return view('dashboard', compact(
             'tentang',
             'pengumuman',
             'progress',
             'galeri',
-            'popupKabars'
+            'popupKabars',
+            'kabar'
         ));
     }
 }
