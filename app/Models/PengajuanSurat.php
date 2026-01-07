@@ -58,4 +58,11 @@ public function warga()
     {
         return $this->hasMany(PengajuanSuratFile::class);
     }
+public function messages()
+{
+    return $this->hasMany(PengajuanMessage::class, 'pengajuan_surat_id')
+                ->orderBy('created_at', 'asc');
+}
+
+
 }

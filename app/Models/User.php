@@ -62,5 +62,10 @@ protected $fillable = [
 {
     return $this->hasMany(Komentar::class);
 }
+public function pengajuanMessages()
+{
+    return $this->hasMany(PengajuanMessage::class);
+}
+
 
 }

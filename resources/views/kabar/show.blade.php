@@ -36,7 +36,7 @@
 
         {{-- LIST KOMENTAR --}}
         <div id="komentar-wrapper" class="space-y-4">
-
+            <div id="komentar"></div>
             @forelse ($kabar->komentars as $komentar)
                 <div
                     class="p-4 rounded-xl relative
@@ -95,7 +95,7 @@
         {{-- FORM KOMENTAR --}}
         @auth
             <form
-                action="{{ route('komentar.store', $kabar->id) }}"
+                action="{{ route('komentar.store', $kabar->id) }}#komentar"
                 method="POST"
                 class="mt-8"
             >

@@ -1,23 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KomentarController;
-use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\KabarController;
 use App\Http\Controllers\User\KontakController;
-use App\Http\Controllers\User\PengumumanController;
+use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\PengajuanSuratController;
-use App\Http\Controllers\Auth\WargaRegisterController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\PengumumanController;
 
 // ADMIN
-use App\Http\Controllers\Admin\GaleriController;
-use App\Http\Controllers\Admin\KabarController as AdminKabarController;
+use App\Http\Controllers\PengajuanMessageController;
 use App\Http\Controllers\Admin\KontakPesanController;
 use App\Http\Controllers\Admin\TentangDesaController;
+use App\Http\Controllers\Auth\WargaRegisterController;
 use App\Http\Controllers\Admin\PengajuanSuratAdminController;
 use App\Http\Controllers\Admin\ProgressPembangunanController;
+use App\Http\Controllers\Admin\KabarController as AdminKabarController;
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 
 /*
@@ -47,6 +48,16 @@ Route::post('/kabar/{kabar}/komentar', [KomentarController::class, 'store'])
 // kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
+
+// area bersama
+Route::middleware(['auth'])->group(function () {
+
+    Route::post(
+        '/pengajuan/{id}/messages',
+        [PengajuanMessageController::class, 'store']
+    )->name('pengajuan.messages.store');
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +123,10 @@ Route::middleware(['auth', 'admin'])
 
         Route::post('/layanan-surat/{pengajuan}/selesai', [PengajuanSuratAdminController::class, 'selesai'])
             ->name('pengajuan.selesai');
+
+        Route::post('/pengajuan/{id}/message', [PengajuanMessageController::class, 'store']
+            )->name('pengajuan.message.store');
+
 
         // tentang desa
         Route::get('/tentang-desa', [TentangDesaController::class, 'index'])->name('tentang-desa.index');

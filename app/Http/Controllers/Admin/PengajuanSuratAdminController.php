@@ -32,6 +32,11 @@ class PengajuanSuratAdminController extends Controller
             'jenisSurat',
             'details',
             'files',
+
+            // chat messages (urut lama → baru)
+            'messages' => function ($q) {
+                $q->oldest()->with('user');
+            },
         ]);
 
         return view('admin.layanan.show', compact('pengajuan'));

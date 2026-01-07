@@ -22,3 +22,8 @@ window.addEventListener("load", function () {
     //     popup.classList.add("hidden");
     // }
 });
+
+const chatBox = document.getElementById("chat-box");
+if (chatBox) {
+    chatBox.scrollTop = chatBox.scrollHeight;
+}

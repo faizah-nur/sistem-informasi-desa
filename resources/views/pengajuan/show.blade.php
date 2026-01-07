@@ -85,6 +85,17 @@
             </div>
         @endif
 
+
+        {{-- CHAT ADMIN & WARGA --}}
+@if($pengajuan->status !== 'selesai')
+    <div class="mt-6">
+        <h3 class="text-lg font-semibold mb-3">Percakapan</h3>
+
+        @include('pengajuan.partials.chat', ['pengajuan' => $pengajuan])
+    </div>
+@endif
+
+
         <a href="{{ route('pengajuan.riwayat') }}"
            class="inline-block text-sm text-gray-600 underline">
             ← Kembali ke riwayat

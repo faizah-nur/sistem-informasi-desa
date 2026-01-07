@@ -21,14 +21,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased bg-gradient-to-br from-green-50 to-green-100 ">
+<body class="font-sans antialiased bg-white ">
 <div class="min-h-screen bg-gray-100">
 
     @include('layouts.navigation')
 
     {{-- Page Heading (khusus x-app-layout) --}}
     @isset($header)
-        <header class="bg-white shadow">
+        <header class="bg-white shadow mb-3">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 mt-20">
                 {{ $header }}
             </div>

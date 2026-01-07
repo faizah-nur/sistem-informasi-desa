@@ -14,3 +14,28 @@
     animation-play-state: paused;
     cursor: pointer;
 }
+.chat-box {
+    max-height: 350px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.chat-bubble {
+    max-width: 65%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.chat-warga {
+    background-color: #e9ecef;
+    text-align: left;
+}
+
+.chat-admin {
+    background-color: #198754;
+    color: white;
+    text-align: left;
+}
