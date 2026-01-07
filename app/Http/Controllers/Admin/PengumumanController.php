@@ -29,7 +29,6 @@ class PengumumanController extends Controller
     {
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
-            'ringkasan' => 'required',
             'isi' => 'nullable',
             'tanggal' => 'required|date',
             'is_published' => 'boolean',
@@ -54,7 +53,6 @@ class PengumumanController extends Controller
     {
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
-            'ringkasan' => 'required',
             'isi' => 'nullable',
             'tanggal' => 'required|date',
             'is_published' => 'boolean',

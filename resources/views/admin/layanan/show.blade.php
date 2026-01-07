@@ -29,6 +29,25 @@
     @endif
 </div>
 
+        {{-- File Pendukung --}}
+        @if ($pengajuan->files->count())
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h4 class="font-semibold mb-4">File Pendukung</h4>
+
+                <ul class="list-disc list-inside">
+                    @foreach ($pengajuan->files as $file)
+                        <li>
+                            <a href="{{ asset('storage/' . $file->path) }}"
+                               target="_blank"
+                               class="text-blue-600 underline">
+                                {{ $file->nama_file }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
 {{-- ================= DATA PENGAJUAN ================= --}}
 <div class="bg-white p-6 rounded shadow mb-6">
     <h3 class="font-semibold mb-3">Data Pengajuan</h3>

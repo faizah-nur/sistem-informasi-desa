@@ -55,10 +55,10 @@
         </span>
     </label>
 </div>
-
+  <p class="text-red-600 italic">* tanggal wajib diisi</p>
     <input type="date" name="tanggal_publish"
            value="{{ $kabar->tanggal_publish }}"
-           class="w-full border rounded px-3 py-2">
+           class="w-60 border rounded px-3 py-2">
 
     <label class="flex items-center gap-2">
         <input type="checkbox" name="is_active"

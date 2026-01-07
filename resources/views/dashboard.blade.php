@@ -203,7 +203,7 @@
                 </h3>
 
                 <p class="text-gray-700 text-sm leading-relaxed">
-                    {{ $item->ringkasan }}
+                    {{ $item->isi }}
                 </p>
 
                 <p class="text-xs text-gray-500 mt-2">
@@ -254,7 +254,7 @@
             </div>
 
             <p class="text-xs text-gray-500 mt-2">
-                Progress {{ $item->persentase_progress }}%
+                Progress {{ $item->persentase_progress }}%  ||  {{ $item->tanggal_mulai }}  ||  {{ $item->tanggal_selesai }}
             </p>
         </div>
     </div>

@@ -34,14 +34,6 @@
     </div>
 
     <div>
-      <label class="font-semibold">Ringkasan</label>
-      <textarea
-        name="ringkasan"
-        class="w-full border rounded p-2"
-      >{{ old('ringkasan', $pengumuman->ringkasan) }}</textarea>
-    </div>
-
-    <div>
       <label class="font-semibold">Isi</label>
       <textarea
         name="isi"

@@ -28,10 +28,6 @@
             {!! $kabar->isi !!}
         </article>
 
-        {{-- ===================== --}}
-        {{-- SECTION KOMENTAR --}}
-        {{-- ===================== --}}
-
         <hr class="my-10">
 
         <h2 class="text-2xl font-bold mb-6 text-green-700">
@@ -44,7 +40,7 @@
             @forelse ($kabar->komentars as $komentar)
                 <div
                     class="p-4 rounded-xl relative
-                    {{ $komentar->user->is_admin
+                    {{ $komentar->user->isAdmin()
                         ? 'bg-green-100 border border-green-300'
                         : 'bg-gray-100' }}"
                 >
@@ -54,7 +50,7 @@
                             {{ $komentar->user->name }}
                         </p>
 
-                        @if($komentar->user->is_admin)
+                        @if($komentar->user->isAdmin())
                             <span class="text-xs bg-green-600 text-white px-2 py-0.5 rounded-full">
                                 Admin
                             </span>
@@ -71,7 +67,7 @@
 
                     {{-- ADMIN ONLY: HAPUS --}}
                     @auth
-                        @if(auth()->user()->is_admin)
+                        @if(auth()->user()->isAdmin())
                             <form
                                 action="{{ route('admin.komentar.destroy', $komentar->id) }}"
                                 method="POST"
@@ -96,10 +92,7 @@
 
         </div>
 
-        {{-- ===================== --}}
         {{-- FORM KOMENTAR --}}
-        {{-- ===================== --}}
-
         @auth
             <form
                 action="{{ route('komentar.store', $kabar->id) }}"
@@ -112,7 +105,7 @@
                     name="isi"
                     rows="3"
                     class="w-full rounded-xl border-gray-300 focus:ring-green-500"
-                    placeholder="{{ auth()->user()->is_admin
+                    placeholder="{{ auth()->user()->isAdmin()
                         ? 'Tulis komentar resmi sebagai Admin...'
                         : 'Tulis komentar...' }}"
                     required
@@ -124,7 +117,7 @@
                     Kirim Komentar
                 </button>
 
-                @if(auth()->user()->is_admin)
+                @if(auth()->user()->isAdmin())
                     <p class="mt-2 text-xs text-gray-500">
                         💡 Komentar Anda akan ditandai sebagai <strong>Admin</strong>
                     </p>

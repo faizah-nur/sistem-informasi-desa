@@ -14,7 +14,6 @@ public function up(): void
     Schema::create('pengumuman', function (Blueprint $table) {
         $table->id();
         $table->string('judul');
-        $table->text('ringkasan');
         $table->text('isi')->nullable();
         $table->date('tanggal');
         $table->boolean('is_published')->default(true);

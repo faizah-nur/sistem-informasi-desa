@@ -24,7 +24,7 @@
             <div class="space-y-6 text-gray-600">
                 <p>📍 Jl. Raya Desa Example No. 123</p>
                 <p>☎️ (+62) 812-3456-7890</p>
-                <p>✉️ desacontoh@example.com</p>
+                <p>✉️ desaLamongan@gmail.com</p>
                 <p>🕒 Senin – Jumat, 08.00 – 15.00 WIB</p>
             </div>
         </div>

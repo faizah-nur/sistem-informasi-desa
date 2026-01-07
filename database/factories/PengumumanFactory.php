@@ -13,8 +13,7 @@ class PengumumanFactory extends Factory
     {
         return [
             'judul' => $this->faker->sentence(5),
-            'ringkasan' => $this->faker->paragraph(2),
-            'isi' => $this->faker->paragraph(5),
+            'isi' => $this->faker->paragraph(2),
             'tanggal' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'is_published' => true,
         ];

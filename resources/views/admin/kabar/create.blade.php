@@ -40,9 +40,9 @@
     </label>
 </div>
 
-
+    <p class="text-red-600 italic">* tanggal wajib diisi</p>
     <input type="date" name="tanggal_publish"
-           class="w-full border rounded px-3 py-2" required>
+           class="w-64 border rounded px-3 py-2" required>
 
     <label class="flex items-center gap-2">
         <input type="checkbox" name="is_active" checked>

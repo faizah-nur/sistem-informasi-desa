@@ -26,7 +26,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @forelse ($kabar as $item)
-                <div class="bg-green-100 rounded-xl p-4 shadow-lg">
+                <div class="bg-green-50 rounded-xl p-4 shadow-lg">
                     <img src="{{ asset('storage/' . $item->gambar) }}" class="rounded-xl mb-3" />
 
                     <h3 class="font-semibold text-xl mb-1 text-lime-600">

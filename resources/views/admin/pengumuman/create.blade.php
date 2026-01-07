@@ -17,12 +17,6 @@
     </div>
 
     <div>
-        <label class="font-semibold text-green-700">Ringkasan</label>
-        <textarea name="ringkasan" rows="3"
-                  class="w-full border px-4 py-2 rounded mt-2"></textarea>
-    </div>
-
-    <div>
         <label class="font-semibold text-green-700">Isi Lengkap</label>
         <textarea name="isi" rows="5"
                   class="w-full border px-4 py-2 rounded mt-2"></textarea>
