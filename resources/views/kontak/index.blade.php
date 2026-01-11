@@ -3,21 +3,11 @@
         Kontak Desa
     </x-slot>
 
-    <!-- HERO -->
-    <section class="py-16 px-6 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-amber-500">
-            Kontak Desa
-        </h1>
-        <p class="text-lg mt-4 text-green-600 max-w-2xl mx-auto">
-            Hubungi Pemerintah Desa untuk pertanyaan, layanan, atau pengaduan.
-        </p>
-    </section>
-
-    <section class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-2 gap-12">
+    <section class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-2 gap-12 ">
 
         <!-- INFO -->
         <div>
-            <h2 class="text-3xl font-bold text-amber-500 mb-6">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6 mt-8">
                 Informasi Kontak
             </h2>
 
@@ -31,7 +21,7 @@
 
         <!-- FORM -->
         <div>
-            <h2 class="text-3xl font-bold text-amber-500 mb-6">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6 mt-8">
                 Kirim Pesan
             </h2>
 

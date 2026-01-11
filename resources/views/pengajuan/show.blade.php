@@ -89,7 +89,7 @@
         {{-- CHAT ADMIN & WARGA --}}
 @if($pengajuan->status !== 'selesai')
     <div class="mt-6">
-        <h3 class="text-lg font-semibold mb-3">Percakapan</h3>
+        <h3 class="text-lg font-semibold mb-3">Hubungi Admin</h3>
 
         @include('pengajuan.partials.chat', ['pengajuan' => $pengajuan])
     </div>
