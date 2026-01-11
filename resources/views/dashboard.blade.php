@@ -3,116 +3,103 @@
         Dashboard
     </x-slot>
 <!-- HERO -->
-<section class="relative w-full min-h-screen overflow-hidden">
+<section class="bg-white min-h-screen flex items-center relative">
+  <div class="max-w-7xl w-full mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
-  <div
-    class="absolute top-[-30%] left-1/2 -translate-x-1/2
-           w-[1000px] h-[1000px]
-           blur-3xl opacity-100
-           pointer-events-none
-           z-0"
-    style="
-      background: radial-gradient(
-        circle,
-        rgb(241, 98, 9) 10%,
-        rgba(255,220,120,0.7) 30%,
-        rgba(255,220,120,0.35) 50%,
-        transparent 70%
-      );
-    "
-  ></div>
+      <!-- KONTEN KIRI -->
+      <div class="text-center lg:text-left">
+        <h2
+          class="font-bold text-green-700
+                 text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem]
+                 leading-tight"
+        >
+          Pemerintahan Lamongan
+        </h2>
 
-  <div
-    class="absolute inset-0 z-10
-           bg-gradient-to-b
-           from-amber-100/70
-           via-emerald-100/80
-           to-emerald-200">
-  </div>
+        <p class="mt-4 text-slate-700 text-sm sm:text-base md:text-lg">
+          Sistem Informasi Layanan Desa berbasis digital yang dirancang untuk
+          mempermudah pengajuan surat, meningkatkan efisiensi pelayanan
+          administrasi, serta mewujudkan transparansi dan kenyamanan bagi
+          masyarakat.
+        </p>
 
-  <!-- CONTENT -->
-  <div class="relative z-20 min-h-screen flex flex-col justify-center items-center px-4">
-
-    <h1
-      class="font-['Bebas_Neue'] font-black text-green-700 drop-shadow-xl
-             mb-3 text-center
-             text-3xl sm:text-4xl md:text-6xl
-             tracking-[2px] sm:tracking-[3px] md:tracking-[5px]">
-      PEMERINTAHAN LAMONGAN
-    </h1>
-
-    <!-- IMAGES -->
-    <div class="flex justify-center gap-2 sm:gap-3 md:gap-4">
-
-      <div class="hidden md:block image-card">
-        <img src="img/h1.jpeg" alt="">
+        <a
+          href="{{ route('layanan.index') }}"
+          class="inline-block mt-6 px-6 py-2 rounded-lg
+                 bg-amber-600 text-white font-medium
+                 hover:bg-amber-500 transition"
+        >
+          LAYANAN
+        </a>
+        <a
+          href="#pengumuman"
+          class="inline-block mt-6 px-6 py-2 rounded-lg
+                 bg-amber-600 text-white font-medium
+                 hover:bg-amber-500 transition"
+        >
+          PENGUMUMAN
+        </a>
+        <a
+          href="#progres"
+          class="inline-block mt-6 px-6 py-2 rounded-lg
+                 bg-amber-600 text-white font-medium
+                 hover:bg-amber-500 transition"
+        >
+          PROGRES PEMBANGUNAN
+        </a>
       </div>
 
-      <div class="hidden sm:block image-card">
-        <img src="img/h2.jpeg" alt="">
-      </div>
+      <!-- KONTEN KANAN -->
+      <div>
+        <div
+          class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2
+                 gap-4 sm:gap-6 max-w-4xl mx-auto"
+        >
 
-      <div class="image-card">
-        <img src="img/h3.jpeg" alt="">
-      </div>
+          <!-- ITEM -->
+          <a
+            href="{{ route('layanan.index') }}"
+            class="reveal flex flex-col items-center p-4 sm:p-5
+                   bg-green-100 rounded-xl
+                   shadow-[10px_10px_25px_rgba(0,255,0,0.25)]
+                   hover:shadow-[5px_5px_20px_rgba(0,255,0,0.25)]
+                   transition"
+          >
+            <img src="/img/skck.png" class="w-16 h-16 sm:w-20 sm:h-20 mb-3" />
+            <p class="font-medium text-center text-green-700 text-sm sm:text-base">
+              Surat Pengantar SKCK
+            </p>
+          </a>
 
-      <div class="image-card shadow-none hover:scale-100">
-        <img src="img/bendera.png" alt="">
-      </div>
+          <a href="{{ route('layanan.index') }}" class="reveal flex flex-col items-center p-4 sm:p-5 bg-green-100 rounded-xl shadow-[10px_10px_25px_rgba(0,255,0,0.25)] hover:shadow-[5px_5px_20px_rgba(0,255,0,0.25)] transition">
+            <img src="/img/keteranganDomisili.png" class="w-16 h-16 sm:w-20 sm:h-20 mb-3" />
+            <p class="font-medium text-center text-green-700 text-sm sm:text-base">
+              Surat Domisili
+            </p>
+          </a>
 
-      <div class="image-card">
-        <img src="img/h4.jpeg" alt="">
-      </div>
+          <a href="{{ route('layanan.index') }}" class="reveal flex flex-col items-center p-4 sm:p-5 bg-green-100 rounded-xl shadow-[10px_10px_25px_rgba(0,255,0,0.25)] hover:shadow-[5px_5px_20px_rgba(0,255,0,0.25)] transition">
+            <img src="/img/sktm.png" class="w-16 h-16 sm:w-20 sm:h-20 mb-3" />
+            <p class="font-medium text-center text-green-700 text-sm sm:text-base">
+              SKTM
+            </p>
+          </a>
 
-      <div class="hidden sm:block image-card">
-        <img src="img/h5.jpeg" alt="">
-      </div>
+          <a href="{{ route('layanan.index') }}" class="reveal flex flex-col items-center p-4 sm:p-5 bg-green-100 rounded-xl shadow-[10px_10px_25px_rgba(0,255,0,0.25)] hover:shadow-[5px_5px_20px_rgba(0,255,0,0.25)] transition">
+            <img src="/img/keteranganKerja.png" class="w-16 h-16 sm:w-20 sm:h-20 mb-3" />
+            <p class="font-medium text-center text-green-700 text-sm sm:text-base">
+              Keterangan Usaha
+            </p>
+          </a>
 
-      <div class="hidden md:block image-card">
-        <img src="img/h6.jpeg" alt="">
+        </div>
       </div>
 
     </div>
-
-        <!-- SOCIAL ICONS -->
-    <div class="flex gap-3 sm:gap-4 md:gap-5 text-green-700 mt-3 md:mt-5">
-
-      <a href="https://instagram.com/desaLamongan" target="_blank" class="icon-link">
-        <i data-feather="instagram"></i>
-      </a>
-
-      <a href="https://facebook.com/desaLamongan" target="_blank" class="icon-link">
-        <i data-feather="facebook"></i>
-      </a>
-
-      <a href="https://twitter.com/desaLamongan" target="_blank" class="icon-link">
-        <i data-feather="twitter"></i>
-      </a>
-
-      <a href="mailto:desaLamongan@gmail.com" class="icon-link">
-        <i data-feather="mail"></i>
-      </a>
-
-      <a href="https://maps.google.com/?q=Desa+Lamongan" target="_blank" class="icon-link">
-        <i data-feather="map-pin"></i>
-      </a>
-
-      <a href="https://wa.me/628123456789" target="_blank" class="icon-link">
-        <i data-feather="message-square"></i>
-      </a>
-
-    </div>
-
-    <a
-      href="{{ route('layanan.index') }}"
-      class="inline-block mt-3 px-5 py-1
-             rounded-lg bg-amber-600 text-white
-             hover:bg-amber-500 transition">
-      LAYANAN
-    </a>
-
   </div>
-  <div class="hero absolute w-full z-40 bottom-0 overflow-hidden bg-green-700 border-green-700 text-white py-3">
+  {{-- berita --}}
+    <div class="hero absolute w-full z-40 bottom-0 overflow-hidden bg-green-700 border-green-700 text-white py-3">
       <div class="flex items-center gap-4">
   
           {{-- <img class="max-w-16" src="img/logounisla.png" alt="img"> --}}
@@ -133,8 +120,129 @@
 
 
 
+<main>
+<section class="relative w-full min-h-screen overflow-hidden">
 
-  <main class="pt-10">
+  <!-- Background -->
+  <div class="absolute inset-0 z-10 bg-gradient-to-b from-white via-emerald-100/80 to-emerald-200"></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-20 min-h-screen flex items-center px-4 py-16">
+    <div class="w-full max-w-7xl mx-auto">
+
+      <!-- GRID UTAMA -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- ================= STATISTIK WARGA ================= -->
+        <div>
+
+          <div class="text-center mb-6">
+            <h2 class="text-xl sm:text-2xl font-semibold text-green-800">
+              Statistik Data Warga
+            </h2>
+            <div class="mx-auto mt-2 w-24 h-1 bg-green-600 rounded-full"></div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase">Total Warga</p>
+              <p class="text-[3rem] ont-bold text-green-700">
+                {{ number_format($totalWarga) }}
+              </p>
+            </div>
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase">Lansia (&gt; 50 th)</p>
+              <p class="text-[3rem] font-bold text-green-700">
+                {{ number_format($lansia) }}
+              </p>
+            </div>
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase">Balita (≤ 5 th)</p>
+              <p class="text-[3rem] font-bold text-green-700">
+                {{ number_format($balita) }}
+              </p>
+            </div>
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase mb-1">Status Nikah</p>
+              @forelse ($statusNikah as $item)
+                <p class="text-[1rem] text-gray-700">
+                  {{ ucfirst($item->status_pernikahan) }} :
+                  <span class="font-semibold text-green-700">
+                    {{ $item->total }}
+                  </span>
+                </p>
+              @empty
+                <p class="text-xs text-gray-500">Data tidak tersedia</p>
+              @endforelse
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= DANA DESA ================= -->
+        <div>
+          <div class="text-center mb-6">
+            <h2 class="text-xl sm:text-2xl font-semibold text-green-800">
+              Transparansi Dana Desa
+            </h2>
+            <div class="mx-auto mt-2 w-28 h-1 bg-amber-500 rounded-full"></div>
+            <p class="text-xs text-gray-600 mt-2">
+              Tahun Anggaran {{ date('Y') }}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase">Total Dana</p>
+              <p class="text-[1.8rem] font-bold text-green-700">
+                Rp {{ number_format($totalDana ?? 1500000000, 0, ',', '.') }}
+              </p>
+            </div>
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase">Terealisasi</p>
+              <p class="text-[1.8rem] font-bold text-amber-600">
+                Rp {{ number_format($danaTerealisasi ?? 975000000, 0, ',', '.') }}
+              </p>
+            </div>
+
+            <div class="bg-white/20 rounded-xl p-4 text-center shadow">
+              <p class="text-xs text-gray-600 uppercase">Sisa Dana</p>
+              <p class="text-[1.8rem] font-bold text-red-600">
+                Rp {{ number_format(($totalDana ?? 1500000000) - ($danaTerealisasi ?? 975000000), 0, ',', '.') }}
+              </p>
+            </div>
+
+          </div>
+
+{{-- Progress Realisasi --}}
+@isset($persen)
+<div class="bg-white/20 rounded-xl p-4 shadow">
+    <div class="flex justify-between text-xs text-gray-600 mb-1">
+        <span>Realisasi Anggaran</span>
+        <span>{{ $persen }}%</span>
+    </div>
+
+    <div class="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+        <div
+            class="h-full bg-gradient-to-r from-green-500 to-amber-500"
+            style="width: {{ $persen }}%"
+        ></div>
+    </div>
+</div>
+@endisset
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
         <!-- about -->
       <section
         id="sekilas"
@@ -176,6 +284,7 @@
 
       <!-- Pengumuman Penting Section start -->
       <section
+        id="pengumuman"
         class="relative py-20 bg-fixed bg-center bg-cover mt-20"
         style="background-image: url('/img/pengumuman.jpeg')"
       >
@@ -221,7 +330,7 @@
       </section>
 
       <!-- Progres pembangunan start -->
-      <section class="relative py-20 overflow-hidden bg-white">
+      <section class="relative py-20 overflow-hidden bg-white" id="progres">
         <div class="relative max-w-5xl mx-auto px-4 space-y-10">
           <h2
             class="text-3xl md:text-4xl font-extrabold text-green-700 text-center mb-10"
@@ -263,66 +372,6 @@
         </div>
       </section>
       <!-- Progres pembangunan end -->
-
-      <!-- layanan start -->
-      <section class="py-10">
-        <h2
-          class="text-3xl md:text-4xl font-extrabold text-green-700 text-center mb-10"
-        >
-          Layanan Online Desa
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          <!-- SKCK -->
-          <a
-            href="{{ route('layanan.index') }}"
-            class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
-          >
-            <div class="text-4xl mb-3 max-w-24">
-              <img src="/img/skck.png" alt="img" />
-            </div>
-            <p class="font-medium text-center text-green-700">
-              Surat Pengantar SKCK
-            </p>
-          </a>
-
-          <!-- Domisili -->
-          <a
-            href="{{ route('layanan.index') }}"
-            class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
-          >
-            <div class="text-4xl mb-3 max-w-24">
-              <img src="/img/keteranganDomisili.png" alt="img" />
-            </div>
-            <p class="font-medium text-center text-green-700">Surat Domisili</p>
-          </a>
-
-          <!-- SKTM -->
-          <a
-            href="{{ route('layanan.index') }}"
-            class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
-          >
-            <div class="text-4xl mb-3 max-w-24">
-              <img src="/img/sktm.png" alt="img" />
-            </div>
-            <p class="font-medium text-center text-green-700">SKTM</p>
-          </a>
-
-          <!-- Surat Usaha -->
-          <a
-            href="{{ route('layanan.index') }}"
-            class="reveal flex flex-col items-center p-5 bg-green-100 shadow-[20px_20px_30px_rgba(0,255,0,0.35)] rounded-xl hover:shadow-[10px_10px_30px_rgba(0,255,0,0.35)] transition"
-          >
-            <div class="text-4xl mb-3 max-w-24">
-              <img src="/img/keteranganKerja.png" alt="img" />
-            </div>
-            <p class="font-medium text-center text-green-700">
-              Keterangan Usaha
-            </p>
-          </a>
-        </div>
-      </section>
-      <!-- layanan end -->
 
 <!-- GALERI START -->
 <section class="mt-40">
@@ -380,55 +429,6 @@
 </section>
 <!-- GALERI END -->
 
-
-@if($popupKabars->isNotEmpty())
-<div
-    id="popup-kabar"
-    class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center"
->
-    {{-- POPUP CARD --}}
-    <div
-        class="relative bg-green-400/40 max-w-md w-full rounded-2xl overflow-hidden animate-fadeIn"
-        onclick="event.stopPropagation()"
-    >
-
-        {{-- CLOSE BUTTON --}}
-        <button
-            id="closePopup"
-            class="absolute top-3 right-3 z-50 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow hover:bg-gray-100 transition"
-            aria-label="Tutup popup"
-        >
-            ✕
-        </button>
-
-        {{-- GAMBAR --}}
-        <img
-            src="{{ asset('storage/' . $popupKabars->first()->gambar) }}"
-            class="w-full h-56 object-cover"
-            alt="{{ $popupKabars->first()->judul }}"
-        >
-
-        {{-- CONTENT --}}
-        <div class="p-5 text-center">
-            <h3 class="text-lg font-bold text-white mb-2">
-                {{ $popupKabars->first()->judul }}
-            </h3>
-
-            <p class="text-sm text-white mb-4 line-clamp-3">
-                {{ Str::limit(strip_tags($popupKabars->first()->isi), 120) }}
-            </p>
-
-            <a
-                href="{{ route('kabar.show', $popupKabars->first()->slug) }}"
-                class="inline-block bg-amber-500 text-white px-5 py-2 rounded-lg hover:bg-amber-600 transition"
-            >
-                Baca Selengkapnya
-            </a>
-        </div>
-
-    </div>
-</div>
-@endif
 
 
 

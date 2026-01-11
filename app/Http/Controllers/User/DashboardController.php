@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+use App\Models\Warga;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Kabar;
 use App\Models\Galeri;
@@ -36,14 +37,34 @@ class DashboardController extends Controller
             ->get();
 
         $kabar = Kabar::latest()->take(10)->get();
+        
+        // ================== STATISTIK WARGA ==================
+$totalWarga = Warga::distinct('nik')->count('nik');
 
-        return view('dashboard', compact(
-            'tentang',
-            'pengumuman',
-            'progress',
-            'galeri',
-            'popupKabars',
-            'kabar'
-        ));
+$lansia = Warga::where('umur', '>', 50)->count();
+
+$balita = Warga::where('umur', '<=', 5)->count();
+
+$statusNikah = Warga::select(
+        'status_pernikahan',
+        DB::raw('COUNT(*) as total')
+    )
+    ->groupBy('status_pernikahan')
+    ->get();
+
+
+return view('dashboard', compact(
+    'tentang',
+    'pengumuman',
+    'progress',
+    'galeri',
+    'popupKabars',
+    'kabar',
+    'totalWarga',
+    'lansia',
+    'balita',
+    'statusNikah'
+));
+
     }
 }
