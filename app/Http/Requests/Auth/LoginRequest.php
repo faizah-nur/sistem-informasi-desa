@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'username' => ['required', 'string'],
             'password' => ['required', 'string'],
             'role' => ['nullable', 'string', 'in:user,admin'],
         ];
@@ -42,23 +42,20 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $role = $this->input('role', 'user');
+        $credentials = $this->only('username', 'password');
 
-        // attempt using admin guard when role=admin, otherwise default web guard
-        if ($role === 'admin') {
-            $guard = 'admin';
-        } else {
-            $guard = null; // default
+        // Try default users guard first (users table), then admin guard as fallback
+        $attemptOk = false;
+        if (Auth::attempt($credentials, $this->boolean('remember'))) {
+            $attemptOk = true;
+        } elseif (Auth::guard('admin')->attempt($credentials, $this->boolean('remember'))) {
+            $attemptOk = true;
         }
-
-        $credentials = $this->only('email', 'password');
-
-        $attemptOk = $guard ? Auth::guard($guard)->attempt($credentials, $this->boolean('remember')) : Auth::attempt($credentials, $this->boolean('remember'));
 
         if (! $attemptOk) {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'username' => trans('auth.failed'),
             ]);
         }
 
@@ -93,6 +90,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->input('username')).'|'.$this->ip());
     }
 }

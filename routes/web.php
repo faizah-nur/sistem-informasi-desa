@@ -31,10 +31,13 @@ use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard');
 
-// register warga
-Route::get('/register', [WargaRegisterController::class, 'show'])
-    ->name('register');
-Route::post('/register', [WargaRegisterController::class, 'store']);
+// registration disabled: redirect to login
+Route::get('/register', function () {
+    return redirect()->route('login')->with('info', 'Registrasi ditutup. Hubungi admin jika diperlukan.');
+})->name('register');
+Route::post('/register', function () {
+    return redirect()->route('login')->with('info', 'Registrasi ditutup.');
+});
 
 // kabar / berita
 Route::get('/kabar', [KabarController::class, 'index'])->name('kabar.index');
@@ -64,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
 | USER AREA (LOGIN + EMAIL VERIFIED)
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -155,3 +158,9 @@ Route::middleware(['auth', 'admin'])
 |--------------------------------------------------------------------------
 */
 require __DIR__.'/auth.php';
+
+// Change credentials (force on first login)
+Route::middleware('auth')->group(function () {
+    Route::get('/credentials', [\App\Http\Controllers\Auth\CredentialController::class, 'edit'])->name('credentials.edit');
+    Route::put('/credentials', [\App\Http\Controllers\Auth\CredentialController::class, 'update'])->name('credentials.update');
+});

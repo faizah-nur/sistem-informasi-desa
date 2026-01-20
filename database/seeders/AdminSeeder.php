@@ -17,9 +17,11 @@ class AdminSeeder extends Seeder
             ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Admin Desa',
+                'username' => 'admin',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
                 'nik' => '0000000000000000', // NIK khusus admin
+                'must_change_credentials' => false,
             ]
         );
     }

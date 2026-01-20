@@ -30,11 +30,14 @@ public function store(LoginRequest $request): RedirectResponse
     // Regenerate session
     $request->session()->regenerate();
 
-    // AMBIL ROLE LANGSUNG DARI DATABASE
-    $user = auth()->user();
+        // if admin guard logged in, redirect to admin dashboard
+        if (Auth::guard('admin')->check()) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
 
-    if ($user->role === 'admin') {
-        return redirect()->intended(route('admin.dashboard'));
+    $user = Auth::user();
+    if ($user && $user->must_change_credentials) {
+        return redirect()->route('credentials.edit');
     }
 
     return redirect()->intended(route('dashboard'));

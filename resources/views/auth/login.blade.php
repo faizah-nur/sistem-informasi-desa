@@ -3,35 +3,35 @@
     <x-auth-session-status class="mb-4 text-green-700" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}"
-          class="bg-white p-6 rounded-xl shadow-lg shadow-green-300 transition-all duration-500">
+          class="p-6 transition-all duration-500 bg-white shadow-lg rounded-xl shadow-green-300">
         @csrf
 
-        <!-- Email -->
+        <!-- Username -->
         <div>
-            <x-input-label for="email" value="Email"
-                class="text-green-700 font-semibold" />
+            <x-input-label for="username" value="Username"
+                class="font-semibold text-green-700" />
 
             <x-text-input
-                id="email"
-                class="block mt-1 w-full border-green-300 focus:border-green-600 focus:ring-green-600"
-                type="email"
-                name="email"
-                :value="old('email')"
+                id="username"
+                class="block w-full mt-1 border-green-300 focus:border-green-600 focus:ring-green-600"
+                type="text"
+                name="username"
+                :value="old('username')"
                 required
                 autofocus
                 autocomplete="username" />
 
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" value="Password"
-                class="text-green-700 font-semibold" />
+                class="font-semibold text-green-700" />
 
             <x-text-input
                 id="password"
-                class="block mt-1 w-full border-green-300 focus:border-green-600 focus:ring-green-600"
+                class="block w-full mt-1 border-green-300 focus:border-green-600 focus:ring-green-600"
                 type="password"
                 name="password"
                 required
@@ -46,9 +46,9 @@
                 <input
                     id="remember_me"
                     type="checkbox"
-                    class="rounded border-green-300 text-green-600 focus:ring-green-500"
+                    class="text-green-600 border-green-300 rounded focus:ring-green-500"
                     name="remember">
-                <span class="ms-2 text-sm text-gray-600">
+                <span class="text-sm text-gray-600 ms-2">
                     {{ __('Remember me') }}
                 </span>
             </label>
@@ -58,14 +58,14 @@
         <div class="flex items-center justify-between mt-6">
             <div class="flex items-center gap-4">
                 @if (Route::has('password.request'))
-                    <a class="text-sm text-green-700 hover:text-green-900 transition"
+                    <a class="text-sm text-green-700 transition hover:text-green-900"
                        href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
-                @if (Route::has('register') && old('role', request('role')) !== 'admin')
-                    <a class="text-sm text-green-700 hover:text-green-900 transition"
+                @if (Route::has('register'))
+                    <a class="text-sm text-green-700 transition hover:text-green-900"
                        href="{{ route('register') }}">
                         {{ __('Register') }}
                     </a>
@@ -73,7 +73,7 @@
             </div>
 
             <x-primary-button
-                class="bg-green-700 hover:bg-green-800 focus:ring-green-500 transition-all duration-300 hover:scale-105">
+                class="transition-all duration-300 bg-green-700 hover:bg-green-800 focus:ring-green-500 hover:scale-105">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
