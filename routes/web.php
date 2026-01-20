@@ -7,15 +7,17 @@ use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\User\KabarController;
 use App\Http\Controllers\User\KontakController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\User\DanaDesaController;
 use App\Http\Controllers\PengajuanSuratController;
 use App\Http\Controllers\User\DashboardController;
-use App\Http\Controllers\User\PengumumanController;
 
 // ADMIN
+use App\Http\Controllers\User\PengumumanController;
 use App\Http\Controllers\PengajuanMessageController;
 use App\Http\Controllers\Admin\KontakPesanController;
 use App\Http\Controllers\Admin\TentangDesaController;
 use App\Http\Controllers\Auth\WargaRegisterController;
+use App\Http\Controllers\Admin\DanaDesaRealisasiController;
 use App\Http\Controllers\Admin\PengajuanSuratAdminController;
 use App\Http\Controllers\Admin\ProgressPembangunanController;
 use App\Http\Controllers\Admin\KabarController as AdminKabarController;
@@ -30,6 +32,9 @@ use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController
 // halaman utama
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard');
+
+    Route::get('/dana-desa/realisasi', [DanaDesaController::class, 'index'])
+    ->name('dana-desa.realisasi');
 
 // registration disabled: redirect to login
 Route::get('/register', function () {
@@ -110,7 +115,20 @@ Route::middleware(['auth', 'admin'])
 
         Route::get('/dashboard', fn () => view('admin.dashboard'))
             ->name('dashboard');
+        
+    // Index & Create
+    Route::get('/dana-desa', [DanaDesaRealisasiController::class, 'index'])
+        ->name('dana-desa.index');
+    Route::get('/dana-desa/create', [DanaDesaRealisasiController::class, 'create'])
+        ->name('dana-desa.create');
+    Route::post('/dana-desa', [DanaDesaRealisasiController::class, 'store'])
+        ->name('dana-desa.store');
 
+    // Edit & Update
+    Route::get('/dana-desa/{dana_desa_realisasi}/edit', [DanaDesaRealisasiController::class, 'edit'])
+        ->name('dana-desa.edit');
+    Route::put('/dana-desa/{dana_desa_realisasi}', [DanaDesaRealisasiController::class, 'update'])
+        ->name('dana-desa.update');
         // pengajuan surat
         Route::get('/layanan-surat', [PengajuanSuratAdminController::class, 'index'])
             ->name('layanan.index');

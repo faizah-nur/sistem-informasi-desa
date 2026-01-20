@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use App\Models\Warga;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\Kabar;
+use App\Models\Warga;
 use App\Models\Galeri;
 use App\Models\Pengumuman;
 use App\Models\TentangDesa;
+use App\Models\DanaDesaRealisasi;
+use Illuminate\Support\Facades\DB;
 use App\Models\ProgressPembangunan;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -52,6 +53,16 @@ $statusNikah = Warga::select(
     ->groupBy('status_pernikahan')
     ->get();
 
+    $tahun = now()->year;
+
+$totalDana = DanaDesaRealisasi::where('tahun', $tahun)->sum('anggaran');
+$danaTerealisasi = DanaDesaRealisasi::where('tahun', $tahun)->sum('realisasi');
+
+$persen = $totalDana > 0
+    ? round(($danaTerealisasi / $totalDana) * 100)
+    : 0;
+
+
 
 return view('dashboard', compact(
     'tentang',
@@ -63,7 +74,10 @@ return view('dashboard', compact(
     'totalWarga',
     'lansia',
     'balita',
-    'statusNikah'
+    'statusNikah',
+    'totalDana',
+    'danaTerealisasi',
+    'persen'
 ));
 
     }
