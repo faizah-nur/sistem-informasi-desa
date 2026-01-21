@@ -20,12 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             VisiMisiSeeder::class,
-            PengumumanSeeder::class,
-            GaleriSeeder::class,
-            ProgressPembangunanSeeder::class,
-            // halaman kabar
-            KabarSeeder::class,
-            // layanan
             JenisSuratSeeder::class,
             WargaSeeder::class,
     ]);

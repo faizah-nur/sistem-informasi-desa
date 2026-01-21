@@ -10,11 +10,11 @@
       <!-- KONTEN KIRI -->
       <div class="text-center lg:text-left">
         <h2
-          class="font-bold text-green-700
+          class="font-bold mt-10 text-green-700
                  text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem]
                  leading-tight"
         >
-          Pemerintahan Lamongan
+          {{ \App\Models\Setting::get('site_name', 'Nama Website') }}
         </h2>
 
         <p class="mt-4 text-sm text-slate-700 sm:text-base md:text-lg">
@@ -325,10 +325,10 @@
       <section
         id="pengumuman"
         class="relative py-20 mt-20 bg-fixed bg-center bg-cover"
-        style="background-image: url('/img/pengumuman.jpeg')"
+        style="background-image: url('/img/sawah.jpeg')"
       >
         <!-- Overlay hijau -->
-        <div class="absolute inset-0 bg-lime-900/13 backdrop-blur-[3px]"></div>
+        <div class="absolute inset-0 bg-slate-900/30"></div>
 
         <div class="relative max-w-6xl px-4 mx-auto">
           <h2

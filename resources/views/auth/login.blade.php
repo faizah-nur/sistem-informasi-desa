@@ -55,7 +55,7 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex items-center justify-between mt-6">
+        {{-- <div class="flex items-center justify-between mt-6">
             <div class="flex items-center gap-4">
                 @if (Route::has('password.request'))
                     <a class="text-sm text-green-700 transition hover:text-green-900"
@@ -70,7 +70,7 @@
                         {{ __('Register') }}
                     </a>
                 @endif
-            </div>
+            </div> --}}
 
             <x-primary-button
                 class="transition-all duration-300 bg-green-700 hover:bg-green-800 focus:ring-green-500 hover:scale-105">

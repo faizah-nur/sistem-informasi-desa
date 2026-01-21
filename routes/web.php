@@ -18,8 +18,10 @@ use App\Http\Controllers\User\PengumumanController;
 use App\Http\Controllers\PengajuanMessageController;
 use App\Http\Controllers\Admin\KontakPesanController;
 // use App\Http\Controllers\Auth\WargaRegisterController;
+use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\PerangkatDesaController;
 use App\Http\Controllers\PerangkatDesaPublicController;
+use App\Http\Controllers\Admin\WebsiteSettingController;
 use App\Http\Controllers\Admin\DanaDesaRealisasiController;
 use App\Http\Controllers\Admin\PengajuanSuratAdminController;
 use App\Http\Controllers\Admin\ProgressPembangunanController;
@@ -121,17 +123,22 @@ Route::middleware(['auth', 'admin'])
 
         Route::get('/dashboard', fn () => view('admin.dashboard'))
             ->name('dashboard');
+               // halaman pengaturan website
+        Route::get('/settings/website', 
+            [WebsiteSettingController::class, 'edit']
+        )->name('settings.website');
+
+        // simpan pengaturan (logo, site name, dll)
+        Route::put('/settings/website', 
+            [WebsiteSettingController::class, 'update']
+        )->name('settings.website.update');
         
+    // pasword admin
+    Route::get('/akun', [AdminAccountController::class, 'edit'])
+        ->name('account.edit');
+    Route::put('/akun', [AdminAccountController::class, 'update'])
+        ->name('account.update');
 
-    // tambah data warga
-        Route::get('/warga', [WargaController::class, 'index'])
-        ->name('warga.index');
-
-    Route::get('/warga/create', [WargaController::class, 'create'])
-        ->name('warga.create');
-
-    Route::post('/warga', [WargaController::class, 'store'])
-        ->name('warga.store');
     // Index & Create
     Route::get('/dana-desa', [DanaDesaRealisasiController::class, 'index'])
         ->name('dana-desa.index');
