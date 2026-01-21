@@ -61,4 +61,13 @@ class DanaDesaRealisasiController extends Controller
             ->route('admin.dana-desa.index')
             ->with('success', 'Realisasi dana berhasil diperbarui');
     }
+    public function destroy(DanaDesaRealisasi $dana_desa_realisasi)
+{
+    $dana_desa_realisasi->delete();
+
+    return redirect()
+        ->route('admin.dana-desa.index')
+        ->with('success', 'Realisasi dana berhasil dihapus');
+}
+
 }

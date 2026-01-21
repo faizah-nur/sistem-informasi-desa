@@ -3,40 +3,40 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\TentangDesa;
+use App\Models\visiMisi;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 
-class TentangDesaController extends Controller
+class visiMisiController extends Controller
 {
 public function index()
 {
-    $data = TentangDesa::first();
+    $data = visiMisi::first();
 
-    return view('admin.tentang-desa.index', [
-        'title' => 'Tentang Desa',
+    return view('admin.visi_misi.index', [
+        'title' => 'Visi Misi',
         'data' => $data
     ]);
 }
 
 public function edit()
 {
-    $data = TentangDesa::firstOrFail();
+    $data = visiMisi::firstOrFail();
 
-    return view('admin.tentang-desa.edit', [
-        'title' => 'Edit Tentang Desa',
+    return view('admin.visi_misi.edit', [
+        'title' => 'Edit Visi Misi',
         'data' => $data
     ]);
 }
 
 public function update(Request $request)
 {
-    $data = TentangDesa::firstOrFail();
+    $data = visiMisi::firstOrFail();
 
     $validated = $request->validate([
-        'judul' => 'required|string|max:255',
-        'deskripsi' => 'required',
+        'visi' => 'required',
+        'misi' => 'required',
         'gambar' => 'nullable|image|max:2048',
     ]);
 
@@ -46,13 +46,13 @@ public function update(Request $request)
         }
 
         $validated['gambar'] = $request->file('gambar')
-            ->store('tentang-desa', 'public');
+            ->store('visi_misis', 'public');
     }
 
     $data->update($validated);
 
     return redirect()
-        ->route('admin.tentang-desa.index')
-        ->with('success', 'Tentang Desa berhasil diperbarui');
+        ->route('admin.visi_misi.index')
+        ->with('success', 'Visi Misi Desa berhasil diperbarui');
 }
 }

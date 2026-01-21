@@ -238,7 +238,7 @@
   </div>
 </section>
 
-        <!-- about -->
+        <!-- visi misi -->
       <section
         id="sekilas"
         class="relative px-4 overflow-hidden text-black bg-white py-14"
@@ -249,7 +249,7 @@
             id="sekilasImg"
             class="relative w-full h-64 overflow-hidden transition-transform duration-300 transform shadow-lg md:h-80 rounded-2xl"
           > 
-            <img src="{{ $tentang && $tentang->gambar ? asset('storage/' . $tentang->gambar)
+            <img src="{{ $visiMisi && $visiMisi->gambar ? asset('storage/' . $visiMisi->gambar)
               : asset('img/about.jpeg') }}" alt="Tentang Desa" class="object-cover w-full h-full"
           />
             {{-- <div class="absolute inset-0 bg-black/20"></div> --}}
@@ -259,14 +259,20 @@
           <div
             id="sekilasText"
           >
-        <h2 class="mb-4 text-3xl font-extrabold md:text-4xl text-lime-600">
-            {{ $tentang->judul ?? 'Sekilas Tentang Desa' }}
+        <h2 class="mb-2 font-extrabold md:text-2xl text-lime-600">
+            Visi
         </h2>
-
-          <p class="mb-5 leading-relaxed text-gray-700">
-              {{ $tentang->deskripsi ?? '-' }}
-          </p>
-
+        
+        <p class="mb-5 leading-relaxed text-gray-700">
+          {{ $visiMisi->visi ?? '-' }}
+        </p>
+        
+        <h2 class="mb-2 font-extrabold md:text-2xl text-lime-600">
+          Misi
+        </h2>
+        <p class="mb-5 leading-relaxed text-gray-700">
+          {{ $visiMisi->misi ?? '-' }}
+        </p>
             {{-- <a
               href="#"
               class="inline-block px-5 py-2 font-medium text-white transition rounded-lg shadow-md bg-lime-500 hover:bg-lime-600"
@@ -275,6 +281,44 @@
             </a> --}}
           </div>
         </div>
+      </section>
+      {{-- perangkat --}}
+      <section>
+<div class="p-6 mx-auto max-w-7xl">
+
+    <h1 class="mb-6 text-3xl font-bold text-center text-green-700">Perangkat Desa</h1>
+
+    @if($perangkat->isEmpty())
+        <p class="text-center text-gray-500">Belum ada data perangkat desa.</p>
+    @else
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+            @foreach($perangkat as $item)
+                <div class="p-4 text-center bg-white rounded shadow">
+                    <div class="mb-4">
+                        @if($item->foto)
+                            <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}"
+                                 class="object-cover w-24 h-24 mx-auto rounded-full">
+                        @else
+                            <div class="flex items-center justify-center w-24 h-24 mx-auto bg-gray-200 rounded-full">
+                                <span class="text-gray-400">No Photo</span>
+                            </div>
+                        @endif
+                    </div>
+                    <h2 class="font-semibold">{{ $item->nama }}</h2>
+                    <p class="text-sm text-gray-600">{{ $item->jabatan }}</p>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Tombol Lihat Detail --}}
+        <div class="mt-6 text-center">
+            <a href="{{ route('perangkat-desa.index') }}"
+               class="px-4 py-2 text-white transition bg-green-600 rounded hover:bg-green-700">
+               Lihat Detail
+            </a>
+        </div>
+    @endif
+
       </section>
 
       <!-- Pengumuman Penting Section start -->

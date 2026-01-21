@@ -27,12 +27,22 @@
         <td class="px-4 py-2">
             {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
         </td>
-        <td class="px-4 py-2">
-            <a href="{{ route('admin.dana-desa.edit', $item->id) }}"
-               class="px-3 py-1 text-sm text-white bg-blue-600 rounded">
-               Edit
-            </a>
-        </td>
+        <td class="px-4 py-2 space-x-2">
+    <a href="{{ route('admin.dana-desa.edit', $item->id) }}"
+       class="px-3 py-1 text-sm text-white bg-blue-600 rounded">
+       Edit
+    </a>
+
+    <form action="{{ route('admin.dana-desa.destroy', $item->id) }}" method="POST" class="inline-block"
+          onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="px-3 py-1 text-sm text-white bg-red-600 rounded">
+            Hapus
+        </button>
+    </form>
+</td>
+
     </tr>
     @empty 
     <tr>

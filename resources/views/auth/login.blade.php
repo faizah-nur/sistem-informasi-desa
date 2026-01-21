@@ -3,7 +3,7 @@
     <x-auth-session-status class="mb-4 text-green-700" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}"
-          class="p-6 transition-all duration-500 bg-white shadow-lg rounded-xl shadow-green-300">
+          class="p-6 transition-all duration-500 bg-white shadow-lg rounded-xl">
         @csrf
 
         <!-- Username -->

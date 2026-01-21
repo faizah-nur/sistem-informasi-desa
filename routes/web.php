@@ -5,18 +5,21 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\User\KabarController;
+use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\User\KontakController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\User\DanaDesaController;
-use App\Http\Controllers\PengajuanSuratController;
-use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\Admin\visiMisiController;
 
 // ADMIN
+use App\Http\Controllers\PengajuanSuratController;
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\PengumumanController;
 use App\Http\Controllers\PengajuanMessageController;
 use App\Http\Controllers\Admin\KontakPesanController;
-use App\Http\Controllers\Admin\TentangDesaController;
-use App\Http\Controllers\Auth\WargaRegisterController;
+// use App\Http\Controllers\Auth\WargaRegisterController;
+use App\Http\Controllers\Admin\PerangkatDesaController;
+use App\Http\Controllers\PerangkatDesaPublicController;
 use App\Http\Controllers\Admin\DanaDesaRealisasiController;
 use App\Http\Controllers\Admin\PengajuanSuratAdminController;
 use App\Http\Controllers\Admin\ProgressPembangunanController;
@@ -35,6 +38,9 @@ Route::get('/', [DashboardController::class, 'index'])
 
     Route::get('/dana-desa/realisasi', [DanaDesaController::class, 'index'])
     ->name('dana-desa.realisasi');
+
+    Route::get('/perangkat_desa', [PerangkatDesaPublicController::class, 'index'])
+    ->name('perangkat-desa.index');
 
 // registration disabled: redirect to login
 Route::get('/register', function () {
@@ -116,6 +122,16 @@ Route::middleware(['auth', 'admin'])
         Route::get('/dashboard', fn () => view('admin.dashboard'))
             ->name('dashboard');
         
+
+    // tambah data warga
+        Route::get('/warga', [WargaController::class, 'index'])
+        ->name('warga.index');
+
+    Route::get('/warga/create', [WargaController::class, 'create'])
+        ->name('warga.create');
+
+    Route::post('/warga', [WargaController::class, 'store'])
+        ->name('warga.store');
     // Index & Create
     Route::get('/dana-desa', [DanaDesaRealisasiController::class, 'index'])
         ->name('dana-desa.index');
@@ -123,6 +139,11 @@ Route::middleware(['auth', 'admin'])
         ->name('dana-desa.create');
     Route::post('/dana-desa', [DanaDesaRealisasiController::class, 'store'])
         ->name('dana-desa.store');
+    Route::delete('/dana-desa/{dana_desa_realisasi}', [DanaDesaRealisasiController::class, 'destroy'])->name('dana-desa.destroy');
+    
+    // perangkat
+    Route::resource('perangkat', PerangkatDesaController::class)
+        ->except(['show']);
 
     // Edit & Update
     Route::get('/dana-desa/{dana_desa_realisasi}/edit', [DanaDesaRealisasiController::class, 'edit'])
@@ -150,9 +171,9 @@ Route::middleware(['auth', 'admin'])
 
 
         // tentang desa
-        Route::get('/tentang-desa', [TentangDesaController::class, 'index'])->name('tentang-desa.index');
-        Route::get('/tentang-desa/edit', [TentangDesaController::class, 'edit'])->name('tentang-desa.edit');
-        Route::put('/tentang-desa', [TentangDesaController::class, 'update'])->name('tentang-desa.update');
+        Route::get('/visi_misi', [visiMisiController::class, 'index'])->name('visi_misi.index');
+        Route::get('/visi_misi/edit', [visiMisiController::class, 'edit'])->name('visi_misi.edit');
+        Route::put('/visi_misi', [visiMisiController::class, 'update'])->name('visi_misi.update');
 
         // master data
         Route::resource('pengumuman', AdminPengumumanController::class);

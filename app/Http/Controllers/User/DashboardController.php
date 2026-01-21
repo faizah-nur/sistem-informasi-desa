@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 use App\Models\Kabar;
 use App\Models\Warga;
 use App\Models\Galeri;
+use App\Models\visiMisi;
 use App\Models\Pengumuman;
-use App\Models\TentangDesa;
+// use App\Models\TentangDesa;
+use App\Models\PerangkatDesa;
 use App\Models\DanaDesaRealisasi;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProgressPembangunan;
@@ -15,7 +17,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $tentang = TentangDesa::first();
+        // $tentang = TentangDesa::first();
+        $visiMisi = visiMisi::first();
 
         $pengumuman = Pengumuman::published()
             ->orderBy('tanggal', 'desc')
@@ -62,11 +65,12 @@ $persen = $totalDana > 0
     ? round(($danaTerealisasi / $totalDana) * 100)
     : 0;
 
-
+$perangkat = PerangkatDesa::orderBy('nama')->take(4)->get();
 
 return view('dashboard', compact(
-    'tentang',
+    // 'tentang',
     'pengumuman',
+    'visiMisi',
     'progress',
     'galeri',
     'popupKabars',
@@ -77,7 +81,8 @@ return view('dashboard', compact(
     'statusNikah',
     'totalDana',
     'danaTerealisasi',
-    'persen'
+    'persen',
+    'perangkat'
 ));
 
     }

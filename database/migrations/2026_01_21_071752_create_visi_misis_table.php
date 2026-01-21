@@ -9,23 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
-{
-    Schema::create('tentang_desa', function (Blueprint $table) {
+    public function up(): void
+    {
+        Schema::create('visi_misis', function (Blueprint $table) {
         $table->id();
-        $table->string('judul');
-        $table->text('deskripsi');
+        $table->text('visi');
+        $table->text('misi');
         $table->string('gambar')->nullable();
         $table->timestamps();
-    });
-}
-
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('tentang_desas');
+        Schema::dropIfExists('visi_misis');
     }
 };

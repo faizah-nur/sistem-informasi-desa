@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call([
             AdminSeeder::class,
-            TentangDesaSeeder::class,
+            VisiMisiSeeder::class,
             PengumumanSeeder::class,
             GaleriSeeder::class,
             ProgressPembangunanSeeder::class,

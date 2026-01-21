@@ -21,8 +21,11 @@
             <a href="{{ route('admin.dana-desa.index') }}" class="block px-3 py-2 rounded hover:bg-green-800">
                 Dana Desa
             </a>
-            <a href="{{ route('admin.tentang-desa.index') }}" class="block px-3 py-2 rounded hover:bg-green-800">
-                Tentang Desa
+            <a href="{{ route('admin.visi_misi.index') }}" class="block px-3 py-2 rounded hover:bg-green-800">
+                Visi Misi
+            </a>
+            <a href="{{ route('admin.perangkat.index') }}" class="block px-3 py-2 rounded hover:bg-green-800">
+                Perangkat Desa
             </a>
             <a href="{{ route('admin.pengumuman.index') }}" class="block px-3 py-2 rounded hover:bg-green-800">
                 Pengumuman

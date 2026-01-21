@@ -11,7 +11,7 @@ class KabarSeeder extends Seeder
     public function run(): void
     {
         if (app()->environment(['local', 'testing'])) {
-            Kabar::factory(2)->create();
+            Kabar::factory(1)->create();
         }
     }
 }
