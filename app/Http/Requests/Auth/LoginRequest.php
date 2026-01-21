@@ -38,34 +38,23 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
-    {
-        $this->ensureIsNotRateLimited();
+  public function authenticate(): void
+{
+    $this->ensureIsNotRateLimited();
 
-        $credentials = $this->only('username', 'password');
-        $remember = $this->boolean('remember');
+    $credentials = $this->only('username', 'password');
 
-        $authenticated = false;
+    if (! Auth::attempt($credentials, $this->boolean('remember'))) {
+        RateLimiter::hit($this->throttleKey());
 
-        // Attempt login as user
-        if (Auth::attempt($credentials, $remember)) {
-            $authenticated = true;
-        }
-        // Attempt login as admin
-        elseif (Auth::guard('admin')->attempt($credentials, $remember)) {
-            $authenticated = true;
-        }
-
-        if (! $authenticated) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'username' => 'Username atau password salah.',
-            ]);
-        }
-
-        RateLimiter::clear($this->throttleKey());
+        throw ValidationException::withMessages([
+            'username' => 'Username atau password salah.',
+        ]);
     }
+
+    RateLimiter::clear($this->throttleKey());
+}
+
 
     /**
      * Ensure the login request is not rate limited.
