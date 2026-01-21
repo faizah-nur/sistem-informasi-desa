@@ -57,10 +57,10 @@
         <div>
           <h3 class="mb-3 text-lg font-semibold text-lime-300">Kontak Desa</h3>
           <ul class="space-y-3 text-sm text-gray-300">
-            <li>📍 Balai Desa Lamongan</li>
-            <li>☎️ (021) 88997766</li>
-            <li>✉️ desa.lamongan@mail.com</li>
-            <li>🕐 Jam Layanan: 08.00–15.00 WIB</li>
+            <li>📍 {{ \App\Models\Setting::get('contact_address') }}</li>
+            <li>☎️ {{ \App\Models\Setting::get('contact_phone') }}</li>
+            <li>✉️ {{ \App\Models\Setting::get('contact_email') }}</li>
+            <li>🕐 Jam Layanan: {{ \App\Models\Setting::get('service_hours') }}</li>
           </ul>
         </div>
       </div>

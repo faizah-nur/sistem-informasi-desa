@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             VisiMisiSeeder::class,
             JenisSuratSeeder::class,
-            WargaSeeder::class,
     ]);
     }
 }

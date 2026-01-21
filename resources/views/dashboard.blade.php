@@ -413,12 +413,12 @@
       <!-- Progres pembangunan end -->
 
 <!-- GALERI START -->
-<section class="mt-40">
+<section class="mt-10">
     <h2 class="mb-10 text-3xl font-extrabold text-center text-green-700 md:text-4xl">
         Galeri Kegiatan Desa
     </h2>
 
-    <div class="grid grid-cols-2 gap-4 px-4 mt-10 md:grid-cols-4">
+    <div class="grid grid-cols-2 gap-4 px-4 mt-10 md:grid-cols-5">
         @forelse ($galeri as $item)
             <div
                 class="relative aspect-[4/3] rounded-xl overflow-hidden shadow-md
