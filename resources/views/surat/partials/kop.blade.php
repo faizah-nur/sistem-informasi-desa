@@ -1,18 +1,23 @@
 <div class="kop">
-    <table class="kop-table">
+    <table class="kop-table" width="100%">
         <tr>
-            <td class="kop-logo">
-                <img src="{{ public_path('img/logounisla.png') }}" width="80">
+            <td width="15%" align="center">
+                @if(setting('site_logo'))
+                    <img src="{{ public_path('storage/' . setting('site_logo')) }}" width="80">
+                @endif
             </td>
-            <td class="kop-text">
-                <h1>PEMERINTAHAN DESA LAMONGAN</h1>
-                <h2>KECAMATAN LAMONGAN</h2>
-                <h2>KABUPATEN LAMONGAN</h2>
+
+            <td width="85%" align="center">
+                <h1>PEMERINTAHAN DESA {{ strtoupper(setting('nama_desa')) }}</h1>
+                <h2>KECAMATAN {{ strtoupper(setting('nama_kecamatan')) }}</h2>
+                <h2>KABUPATEN {{ strtoupper(setting('nama_kabupaten')) }}</h2>
+
                 <p>
-                    Jl. Raya Lamongan No. 12, Kecamatan Lamongan, Kabupaten Lamongan <br>
-                    Telp: 081334125113
+                    {{ setting('alamat_desa') }} <br>
+                    Telp: {{ setting('telepon_desa') }}
                 </p>
             </td>
         </tr>
     </table>
 </div>
+<hr>
