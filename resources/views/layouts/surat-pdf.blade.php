@@ -13,14 +13,14 @@
             width: 100%;
             border-bottom: 3px solid black;
             padding-bottom: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .kop-table { width: 100%; }
-        .kop-logo { width: 90px; }
+        .kop-logo { width: 80px; }
         .kop-text { text-align: center; }
-        .kop-text h1 { font-size: 16pt; margin: 0; }
+        .kop-text h1 { font-size: 16pt; margin: 0; font-size: 16pt; font-weight: bold;}
         .kop-text h2 { font-size: 14pt; margin: 0; }
-        .kop-text p { font-size: 10pt; margin: 2px 0; }
+        .kop-text p { font-size: 10pt; margin-top: 5px; }
         .judul { text-align: center; margin: 20px 0 10px; }
         .judul h3 { text-decoration: underline; margin-bottom: 5px; }
         .isi { margin-top: 20px; text-align: justify; }

@@ -3,9 +3,17 @@
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-
                 <!-- Navigation Links -->
                 <div class="hidden py-3 space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    @php
+                        use App\Models\Setting;
+                        $logo = Setting::get('site_logo');
+                    @endphp
+
+                    @if($logo)
+                        <img 
+                            src="{{ asset('storage/' . $logo) }}" alt="Logo Desa" class="h-10 mx-auto">
+                    @endif
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
